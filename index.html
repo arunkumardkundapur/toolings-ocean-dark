@@ -1,508 +1,2563 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toolings Ocean – Precision Engineering, Bangalore</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-/* ═══════════ RESET & TOKENS ═══════════ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#0D1B2A;--steel:#1B3A5C;--ocean:#1A6B8A;
-  --teal:#0FA4AF;--gold:#E8A020;--light:#EDF4F8;
-  --white:#FFFFFF;--gray:#8A9BB0;--text:#1E2D3D;--dark:#060E17;
-  --px:clamp(18px,5vw,80px);
-  --py:clamp(56px,8vw,100px);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;-webkit-text-size-adjust:100%}
-img,svg{max-width:100%;display:block}
-a{text-decoration:none}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toolings Ocean | Precision Mould & Press Tool Manufacturer | Bangalore</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    /* ═══════════ TOKENS ═══════════ */
+    :root {
+      --red: #C8102E;
+      --red2: #A50D24;
+      --red3: #FF3355;
+      --redalpha: rgba(200, 16, 46, .08);
+      --white: #FFFFFF;
+      --off: #FAFAFA;
+      --light: #FFF5F5;
+      --lighter: #FFF0F0;
+      --dark: #111014;
+      --text: #1A1015;
+      --muted: #7A6870;
+      --border: rgba(200, 16, 46, .12);
+      --px: clamp(20px, 5vw, 88px);
+      --py: clamp(70px, 9vw, 120px);
+    }
 
-/* ═══════════ NAV ═══════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  height:64px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 var(--px);
-  border-bottom:1px solid rgba(15,164,175,0.22);
-}
-.nav-brand{display:flex;align-items:center;gap:10px}
-.nav-logo-mark{
-  width:38px;height:38px;flex-shrink:0;border-radius:50%;
-  background:var(--teal);display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--white);letter-spacing:1px;
-}
-.nav-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);white-space:nowrap}
-.nav-name span{color:var(--teal)}
-.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.72);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:color .2s;white-space:nowrap}
-.nav-links a:hover{color:var(--teal)}
-.nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:8px 18px;border-radius:3px}
-.nav-cta:hover{background:var(--gold)!important;color:var(--navy)!important}
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-/* Hamburger button */
-.nav-ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
-.nav-ham span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
-.nav-ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-ham.open span:nth-child(2){opacity:0}
-.nav-ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    html {
+      scroll-behavior: smooth
+    }
 
-/* Mobile drawer */
-.nav-drawer{
-  display:none;position:fixed;top:64px;left:0;right:0;z-index:999;
-  background:rgba(13,27,42,.99);border-bottom:1px solid rgba(15,164,175,.2);
-  padding:16px var(--px) 24px;flex-direction:column;gap:0;
-}
-.nav-drawer.open{display:flex}
-.nav-drawer a{color:rgba(255,255,255,.75);font-size:15px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s}
-.nav-drawer a:hover{color:var(--teal)}
-.nav-drawer a:last-child{border-bottom:none;border-top:1px solid rgba(15,164,175,.25);margin-top:8px;padding-top:16px;color:var(--teal)}
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden
+    }
 
-/* ═══════════ HERO ═══════════ */
-#hero{
-  min-height:100svh;background:var(--navy);
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
-  padding:calc(64px + clamp(36px,6vw,72px)) var(--px) clamp(36px,6vw,72px);
-}
-.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(15,164,175,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(15,164,175,.06) 1px,transparent 1px);background-size:56px 56px}
-.hero-glow1{position:absolute;top:-120px;right:-120px;width:min(600px,90vw);height:min(600px,90vw);background:radial-gradient(circle,rgba(15,164,175,.18) 0%,transparent 65%);pointer-events:none}
-.hero-glow2{position:absolute;bottom:-80px;left:-80px;width:min(400px,70vw);height:min(400px,70vw);background:radial-gradient(circle,rgba(232,160,32,.12) 0%,transparent 65%);pointer-events:none}
-.hero-inner{position:relative;z-index:2;max-width:720px}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(15,164,175,.14);border:1px solid rgba(15,164,175,.38);color:var(--teal);font-size:clamp(9px,1.8vw,12px);font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:7px 14px;border-radius:2px;margin-bottom:clamp(16px,3vw,26px)}
-.hero-eyebrow::before{content:'';width:6px;height:6px;flex-shrink:0;background:var(--teal);border-radius:50%;animation:dot 2s infinite}
-@keyframes dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,10vw,96px);line-height:.92;color:var(--white);letter-spacing:2px;margin-bottom:clamp(14px,2.5vw,22px)}
-.hero-title .ac{color:var(--teal)}
-.hero-title .go{color:var(--gold)}
-.hero-sub{font-size:clamp(14px,2.2vw,18px);font-weight:300;color:rgba(255,255,255,.62);line-height:1.72;max-width:520px;margin-bottom:clamp(26px,4vw,38px)}
-.hero-btns{display:flex;gap:13px;flex-wrap:wrap}
-.btn-p{background:var(--teal);color:var(--white);padding:clamp(11px,1.8vw,14px) clamp(20px,3vw,32px);border-radius:3px;border:2px solid var(--teal);font-size:clamp(12px,1.5vw,14px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;white-space:nowrap}
-.btn-p:hover{background:transparent;color:var(--teal)}
-.btn-s{background:transparent;color:rgba(255,255,255,.8);padding:clamp(11px,1.8vw,14px) clamp(20px,3vw,32px);border-radius:3px;border:2px solid rgba(255,255,255,.22);font-size:clamp(12px,1.5vw,14px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;white-space:nowrap}
-.btn-s:hover{border-color:var(--gold);color:var(--gold)}
-.hero-stats{display:flex;gap:clamp(24px,5vw,52px);margin-top:clamp(36px,6vw,60px);flex-wrap:wrap}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,52px);color:var(--teal);line-height:1}
-.stat-l{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:4px}
+    a {
+      text-decoration: none;
+      color: inherit
+    }
 
-/* ═══════════ SHARED ═══════════ */
-section{padding:var(--py) var(--px)}
-.s-label{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
-.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,52px);letter-spacing:1px;color:var(--navy);line-height:1.05;margin-bottom:13px}
-.s-title.lt{color:var(--white)}
-.s-desc{font-size:clamp(14px,1.8vw,16px);font-weight:300;color:var(--gray);max-width:560px;line-height:1.78;margin-bottom:clamp(32px,5vw,54px)}
+    /* ═══════════ NAV ═══════════ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--px);
+      height: 68px;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(200, 16, 46, 0.10);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: box-shadow .3s;
+    }
 
-/* ═══════════ ABOUT ═══════════ */
-#about{background:var(--light)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
-.about-card{background:var(--navy);border-radius:6px;padding:clamp(24px,4vw,48px);color:var(--white);position:relative;overflow:hidden}
-.about-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--teal)}
-.about-card h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,28px);letter-spacing:2px;color:var(--teal);margin-bottom:13px}
-.about-card p{font-size:clamp(13px,1.6vw,15px);font-weight:300;color:rgba(255,255,255,.7);line-height:1.75}
-.about-card p+p{margin-top:11px}
-.about-badge{display:inline-block;margin-top:22px;background:var(--gold);color:var(--navy);padding:9px 18px;border-radius:3px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px}
-.info-row{display:flex;gap:12px;padding:clamp(11px,1.8vw,17px) 0;border-bottom:1px solid rgba(13,27,42,.08);align-items:flex-start}
-.info-row:last-child{border-bottom:none}
-.info-k{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);min-width:100px;flex-shrink:0;padding-top:2px}
-.info-v{font-size:clamp(13px,1.6vw,15px);color:var(--text);line-height:1.5}
+    nav.scrolled {
+      box-shadow: 0 2px 32px rgba(200, 16, 46, .08)
+    }
 
-/* ═══════════ PRODUCTS ═══════════ */
-#products{background:var(--white)}
-.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:18px}
-.prod-card{border:1px solid rgba(13,27,42,.08);border-radius:6px;padding:clamp(22px,3vw,34px) clamp(18px,2.5vw,30px);position:relative;overflow:hidden;transition:all .3s;background:var(--white)}
-.prod-card:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 18px 56px rgba(15,164,175,.12)}
-.prod-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--teal);transform:scaleX(0);transition:transform .3s}
-.prod-card:hover::after{transform:scaleX(1)}
-.prod-icon{width:48px;height:48px;background:var(--light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;transition:background .3s}
-.prod-card:hover .prod-icon{background:rgba(15,164,175,.15)}
-.prod-card h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(15px,2vw,19px);font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:9px;text-transform:uppercase}
-.prod-card p{font-size:clamp(12px,1.5vw,14px);font-weight:300;color:var(--gray);line-height:1.68}
-.prod-tag{display:inline-block;margin-top:13px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal)}
+    .nb {
+      display: flex;
+      align-items: center;
+      gap: 11px
+    }
 
-/* ═══════════ MACHINES ═══════════ */
-#machines{background:var(--navy);position:relative;overflow:hidden}
-#machines::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(15,164,175,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(15,164,175,.04) 1px,transparent 1px);background-size:40px 40px}
-.mach-inner{position:relative;z-index:1}
-.mach-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(22px,4vw,48px)}
-.mach-grp h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(13px,1.8vw,17px);font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:9px;border-bottom:1px solid rgba(232,160,32,.3)}
-.mach-list{list-style:none}
-.mach-list li{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:clamp(12px,1.6vw,14px);font-weight:300;color:rgba(255,255,255,.75);line-height:1.55}
-.mach-list li::before{content:'▸';color:var(--teal);margin-top:1px;flex-shrink:0}
+    .nlogo {
+      width: 36px;
+      height: 36px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: .5px;
+      flex-shrink: 0;
+    }
 
-/* ═══════════ CUSTOMERS ═══════════ */
-#customers{background:var(--light)}
-.cust-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
-.cust-card{background:var(--white);border:1px solid rgba(13,27,42,.08);border-radius:6px;padding:clamp(16px,2vw,22px) 14px;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;transition:all .25s}
-.cust-card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 10px 36px rgba(15,164,175,.1)}
-.cust-logo{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--white);flex-shrink:0}
-.cust-name{font-size:11px;font-weight:600;color:var(--navy);line-height:1.4}
-.cust-sec{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray)}
+    .nw {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dark)
+    }
 
-/* ═══════════ CONTACT ═══════════ */
-#contact{background:var(--navy);position:relative;overflow:hidden}
-#contact::before{content:'';position:absolute;top:-200px;right:-200px;width:min(600px,90vw);height:min(600px,90vw);background:radial-gradient(circle,rgba(15,164,175,.12) 0%,transparent 60%);pointer-events:none}
-.contact-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(28px,5vw,80px);align-items:start}
-.c-info h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,46px);letter-spacing:2px;color:var(--white);margin-bottom:13px}
-.c-info>p{font-size:clamp(13px,1.6vw,15px);font-weight:300;color:rgba(255,255,255,.58);line-height:1.8;margin-bottom:28px}
-.c-det{display:flex;align-items:flex-start;gap:13px;margin-bottom:16px}
-.c-det-icon{width:34px;height:34px;flex-shrink:0;background:rgba(15,164,175,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px}
-.c-det-text strong{display:block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:3px}
-.c-det-text span{font-size:clamp(12px,1.5vw,14px);font-weight:300;color:rgba(255,255,255,.68);line-height:1.6}
-.req-form{background:rgba(255,255,255,.04);border:1px solid rgba(15,164,175,.2);border-radius:8px;padding:clamp(20px,4vw,44px)}
-.req-form h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,2.5vw,26px);letter-spacing:2px;color:var(--teal);margin-bottom:6px}
-.req-form .f-sub{font-size:11px;font-weight:300;color:rgba(255,255,255,.4);margin-bottom:24px}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.f-grp{margin-bottom:16px}
-.f-grp label{display:block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
-.f-grp input,.f-grp select,.f-grp textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:11px 13px;color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;transition:border-color .2s,background .2s;outline:none;-webkit-appearance:none;appearance:none}
-.f-grp input::placeholder,.f-grp textarea::placeholder{color:rgba(255,255,255,.2)}
-.f-grp input:focus,.f-grp select:focus,.f-grp textarea:focus{border-color:var(--teal);background:rgba(15,164,175,.07)}
-.f-grp select{cursor:pointer}
-.f-grp select option{background:var(--navy);color:var(--white)}
-.f-grp textarea{resize:vertical;min-height:96px}
-.f-submit{width:100%;background:var(--teal);color:var(--white);border:none;cursor:pointer;padding:14px;border-radius:4px;font-family:'Barlow',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .25s;margin-top:4px}
-.f-submit:hover{background:var(--gold);color:var(--navy);transform:translateY(-2px)}
-.f-note{text-align:center;font-size:10px;font-weight:300;color:rgba(255,255,255,.26);margin-top:10px}
-#f-success{display:none;background:rgba(15,164,175,.14);border:1px solid var(--teal);border-radius:6px;padding:18px;text-align:center;color:var(--teal);font-weight:600;margin-top:12px;font-size:clamp(13px,1.6vw,15px)}
+    .nw em {
+      color: var(--red);
+      font-style: normal
+    }
 
-/* ═══════════ FOOTER ═══════════ */
-footer{background:var(--dark);padding:clamp(32px,5vw,48px) var(--px) clamp(20px,3vw,32px)}
-.f-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:22px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:18px}
-.f-brand{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:4px;color:var(--white)}
-.f-brand span{color:var(--teal)}
-.f-tagline{font-size:10px;font-weight:300;color:rgba(255,255,255,.3);letter-spacing:2px;margin-top:4px}
-.f-nav{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none}
-.f-nav a{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.36);transition:color .2s}
-.f-nav a:hover{color:var(--teal)}
-.f-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.f-copy{font-size:10px;font-weight:300;color:rgba(255,255,255,.2)}
-.f-gstin{font-size:10px;font-weight:600;color:rgba(255,255,255,.2);letter-spacing:1px}
+    .nl {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none
+    }
 
-/* ═══════════ ANIMATIONS ═══════════ */
-.fu{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
-.fu.in{opacity:1;transform:translateY(0)}
+    .nl a {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+      white-space: nowrap
+    }
 
-/* ═══════════ BREAKPOINTS ═══════════ */
+    .nl a:hover {
+      color: var(--red)
+    }
 
-/* Tablet ≤ 900px */
-@media(max-width:900px){
-  .nav-links{display:none}
-  .nav-ham{display:flex}
-  .about-grid{grid-template-columns:1fr}
-  .mach-grid{grid-template-columns:1fr}
-  .contact-inner{grid-template-columns:1fr}
-}
+    .nl .nq {
+      background: var(--red);
+      color: #fff !important;
+      padding: 9px 22px;
+      border-radius: 100px;
+      transition: all .25s !important
+    }
 
-/* Mobile ≤ 600px */
-@media(max-width:600px){
-  :root{--px:18px;--py:48px}
-  .hero-sub{max-width:100%}
-  .hero-btns{flex-direction:column}
-  .btn-p,.btn-s{text-align:center;width:100%}
-  .hero-stats{gap:20px}
-  .f-row{grid-template-columns:1fr}
-  .req-form{padding:20px 16px}
-  .about-card{padding:22px 18px}
-  .info-k{min-width:82px;font-size:9px}
-  .cust-grid{grid-template-columns:repeat(2,1fr)}
-  .prod-grid{grid-template-columns:1fr}
-  .f-top{flex-direction:column;gap:18px}
-  .f-bot{flex-direction:column;align-items:flex-start;gap:6px}
-}
+    .nl .nq:hover {
+      background: var(--red2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(200, 16, 46, .3)
+    }
 
-/* Extra small ≤ 380px */
-@media(max-width:380px){
-  .nav-name{font-size:16px;letter-spacing:2px}
-  .hero-title{font-size:40px}
-  .hero-eyebrow{font-size:8px;letter-spacing:2px;padding:5px 10px}
-  .cust-grid{grid-template-columns:1fr}
-  .stat-n{font-size:30px}
-}
+    .nham {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0
+    }
 
-/* Large ≥ 1400px */
-@media(min-width:1400px){
-  :root{--px:100px}
-  .about-grid{gap:100px}
-  .contact-inner{gap:100px}
-}
-</style>
+    .nham span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      transition: all .3s;
+      border-radius: 1px
+    }
+
+    .nham.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg)
+    }
+
+    .nham.open span:nth-child(2) {
+      opacity: 0
+    }
+
+    .nham.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg)
+    }
+
+    .ndraw {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 499;
+      background: rgba(255, 255, 255, .98);
+      border-bottom: 1px solid var(--border);
+      padding: 16px var(--px) 24px;
+      flex-direction: column
+    }
+
+    .ndraw.open {
+      display: flex
+    }
+
+    .ndraw a {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+      transition: color .2s
+    }
+
+    .ndraw a:hover {
+      color: var(--red)
+    }
+
+    .ndraw a:last-child {
+      border: none;
+      color: var(--red);
+      margin-top: 6px;
+      padding-top: 16px;
+      border-top: 2px solid var(--border)
+    }
+
+    /* ═══════════ HERO ═══════════ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      background: linear-gradient(135deg, #fff 0%, #fff8f8 40%, #fff3f3 100%);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: calc(68px + clamp(40px, 5vw, 60px)) var(--px) clamp(40px, 5vw, 60px);
+      gap: clamp(24px, 4vw, 60px);
+    }
+
+    /* subtle radial bg */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vw;
+      max-width: 800px;
+      max-height: 800px;
+      background: radial-gradient(circle, rgba(200, 16, 46, .06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* fine grid lines */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(200, 16, 46, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 16, 46, .04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--redalpha);
+      border: 1px solid rgba(200, 16, 46, .25);
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: clamp(16px, 3vw, 24px);
+    }
+
+    .hero-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+      flex-shrink: 0
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .25;
+        transform: scale(.5)
+      }
+    }
+
+    .hero-h {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 5.5vw, 76px);
+      line-height: 1.05;
+      color: var(--dark);
+      margin-bottom: clamp(14px, 2.5vw, 22px);
+    }
+
+    .hero-h .red {
+      color: var(--red);
+      display: block
+    }
+
+    .hero-rule {
+      width: clamp(48px, 6vw, 72px);
+      height: 3px;
+      background: var(--red);
+      margin-bottom: 18px;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-rule::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, .7);
+      animation: sweep 2.2s 1s infinite
+    }
+
+    @keyframes sweep {
+      to {
+        left: 200%
+      }
+    }
+
+    .hero-p {
+      font-size: clamp(14px, 1.8vw, 17px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: clamp(24px, 3.5vw, 36px)
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: clamp(32px, 5vw, 52px)
+    }
+
+    .btn-solid {
+      background: var(--red);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 100px;
+      transition: all .25s;
+      border: 2px solid var(--red);
+      white-space: nowrap
+    }
+
+    .btn-solid:hover {
+      background: var(--red2);
+      box-shadow: 0 8px 28px rgba(200, 16, 46, .3);
+      transform: translateY(-2px)
+    }
+
+    .btn-out {
+      background: transparent;
+      color: var(--red);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      border-radius: 100px;
+      border: 2px solid rgba(200, 16, 46, .3);
+      transition: all .25s;
+      white-space: nowrap
+    }
+
+    .btn-out:hover {
+      border-color: var(--red);
+      background: var(--redalpha)
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: clamp(22px, 4vw, 44px);
+      flex-wrap: wrap
+    }
+
+    .hs-n {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1
+    }
+
+    .hs-l {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px
+    }
+
+    /* 3D Canvas container */
+    .hero-3d {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #heroCanvas {
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 1;
+      display: block;
+      border-radius: 16px;
+      background: transparent;
+      filter: drop-shadow(0 32px 80px rgba(200, 16, 46, .18));
+    }
+
+    .canvas-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(200, 16, 46, .1);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0)
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-6px)
+      }
+    }
+
+    /* scrolling badge strip */
+    .hero-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 42px;
+      background: var(--red);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .strip-track {
+      display: flex;
+      animation: track 22s linear infinite;
+      width: max-content
+    }
+
+    .strip-item {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .9);
+      padding: 0 36px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .strip-item::before {
+      content: '◆';
+      font-size: 7px;
+      opacity: .6
+    }
+
+    @keyframes track {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* ═══════════ SECTION GLOBALS ═══════════ */
+    section {
+      padding: var(--py) var(--px)
+    }
+
+    .ov {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px
+    }
+
+    .ov::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+      border-radius: 2px
+    }
+
+    .sh {
+      font-size: clamp(26px, 4vw, 50px);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--dark);
+      margin-bottom: 14px;
+      letter-spacing: -.5px
+    }
+
+    .sp {
+      font-size: clamp(14px, 1.7vw, 16px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.82;
+      max-width: 540px;
+      margin-bottom: clamp(36px, 5vw, 60px)
+    }
+
+    /* ═══════════ PROCESS — 3D scene strip ═══════════ */
+    #process {
+      background: linear-gradient(180deg, var(--off) 0%, var(--white) 100%);
+      padding: var(--py) 0;
+      overflow: hidden;
+    }
+
+    .proc-inner {
+      padding: 0 var(--px)
+    }
+
+    /* 3D Process canvas */
+    .proc-3d-wrap {
+      width: 100%;
+      height: clamp(280px, 38vw, 500px);
+      position: relative;
+      margin: clamp(28px, 4vw, 56px) 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(200, 16, 46, .1);
+      background: linear-gradient(135deg, #fff8f8 0%, #fff3f3 100%);
+      border: 1px solid var(--border);
+    }
+
+    #procCanvas {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .proc-label {
+      position: absolute;
+      top: 18px;
+      left: 24px;
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .proc-label2 {
+      position: absolute;
+      bottom: 18px;
+      right: 24px;
+      background: var(--red);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .proc-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+      gap: clamp(14px, 2vw, 24px);
+    }
+
+    .pstep {
+      background: var(--white);
+      border: 1px solid rgba(200, 16, 46, .1);
+      border-radius: 12px;
+      padding: clamp(20px, 2.5vw, 30px);
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pstep::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s
+    }
+
+    .pstep:hover {
+      box-shadow: 0 12px 40px rgba(200, 16, 46, .1);
+      transform: translateY(-3px)
+    }
+
+    .pstep:hover::before {
+      transform: scaleX(1)
+    }
+
+    .pstep-n {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgba(200, 16, 46, .35);
+      margin-bottom: 12px
+    }
+
+    .pstep-icon {
+      font-size: 28px;
+      margin-bottom: 12px
+    }
+
+    .pstep-t {
+      font-size: clamp(14px, 1.6vw, 16px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      letter-spacing: .2px
+    }
+
+    .pstep-d {
+      font-size: clamp(12px, 1.3vw, 13px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.68
+    }
+
+    /* ═══════════ CAPABILITIES ═══════════ */
+    #capabilities {
+      background: var(--white)
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+      gap: clamp(14px, 2vw, 22px)
+    }
+
+    .cap-card {
+      background: var(--off);
+      border: 1px solid rgba(200, 16, 46, .07);
+      border-radius: 16px;
+      padding: clamp(22px, 2.8vw, 34px);
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cap-card:hover {
+      background: var(--white);
+      box-shadow: 0 16px 52px rgba(200, 16, 46, .1);
+      transform: translateY(-4px);
+      border-color: rgba(200, 16, 46, .2)
+    }
+
+    .cap-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .3s;
+      font-size: 24px;
+    }
+
+    .cap-card:hover .cap-icon {
+      background: rgba(200, 16, 46, .12)
+    }
+
+    .cap-t {
+      font-size: clamp(14px, 1.7vw, 17px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 9px;
+      letter-spacing: .2px
+    }
+
+    .cap-p {
+      font-size: clamp(12px, 1.35vw, 13.5px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.72
+    }
+
+    .cap-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red)
+    }
+
+    /* ═══════════ MANUFACTURING HIGHLIGHT ═══════════ */
+    #mfg {
+      background: linear-gradient(135deg, #fff8f8 0%, var(--off) 100%)
+    }
+
+    .mfg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center
+    }
+
+    /* 3D die canvas */
+    .mfg-3d {
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff 0%, #fff0f0 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(200, 16, 46, .12);
+      position: relative;
+    }
+
+    #dieCanvas {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .die-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 7px 12px;
+      border-radius: 8px;
+    }
+
+    .mfg-specs {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.8vw, 18px)
+    }
+
+    .spec {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: clamp(14px, 2vw, 20px);
+      background: var(--white);
+      border: 1px solid rgba(200, 16, 46, .08);
+      border-radius: 12px;
+      transition: all .25s;
+    }
+
+    .spec:hover {
+      border-color: rgba(200, 16, 46, .25);
+      box-shadow: 0 8px 28px rgba(200, 16, 46, .07)
+    }
+
+    .spec-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px
+    }
+
+    .spec strong {
+      display: block;
+      font-size: clamp(13px, 1.5vw, 15px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px
+    }
+
+    .spec span {
+      font-size: clamp(12px, 1.3vw, 13.5px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    /* ═══════════ CLIENTS ═══════════ */
+    #clients {
+      background: var(--white)
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(200, 16, 46, .08);
+      border-bottom: 1px solid rgba(200, 16, 46, .08);
+      padding: clamp(16px, 2.5vw, 28px) 0;
+      margin-bottom: clamp(36px, 5vw, 60px)
+    }
+
+    .marquee {
+      display: flex;
+      animation: mq 28s linear infinite;
+      width: max-content
+    }
+
+    .marquee:hover {
+      animation-play-state: paused
+    }
+
+    .logo-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 clamp(20px, 3.5vw, 44px);
+      border-right: 1px solid rgba(200, 16, 46, .06);
+      min-width: 140px;
+      height: 60px;
+      filter: grayscale(1) opacity(.45);
+      transition: filter .3s;
+      flex-shrink: 0
+    }
+
+    .logo-slot:hover {
+      filter: none
+    }
+
+    @keyframes mq {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .client-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 148px), 1fr));
+      gap: clamp(10px, 1.5vw, 16px)
+    }
+
+    .cc {
+      background: var(--off);
+      border: 1px solid rgba(200, 16, 46, .07);
+      border-radius: 14px;
+      padding: clamp(14px, 1.8vw, 20px) 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      text-align: center;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cc::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s
+    }
+
+    .cc:hover {
+      background: var(--white);
+      box-shadow: 0 8px 28px rgba(200, 16, 46, .09);
+      transform: translateY(-2px)
+    }
+
+    .cc:hover::before {
+      transform: scaleX(1)
+    }
+
+    .cc-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .cc-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.35
+    }
+
+    /* ═══════════ ABOUT ═══════════ */
+    #about {
+      background: var(--off)
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(28px, 6vw, 80px);
+      align-items: start
+    }
+
+    .about-card {
+      background: var(--red);
+      color: #fff;
+      border-radius: 20px;
+      padding: clamp(28px, 4vw, 48px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 255, 255, .1) 0%, transparent 65%)
+    }
+
+    .about-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 2.5vw, 26px);
+      color: #fff;
+      margin-bottom: 16px
+    }
+
+    .about-card p {
+      font-size: clamp(13px, 1.5vw, 15px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, .78);
+      line-height: 1.78
+    }
+
+    .about-card p+p {
+      margin-top: 12px
+    }
+
+    .estbadge {
+      display: inline-block;
+      margin-top: 22px;
+      background: rgba(255, 255, 255, .18);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, .3)
+    }
+
+    .irows {
+      margin-top: 4px
+    }
+
+    .irow {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: clamp(10px, 1.4vw, 14px) 0;
+      border-bottom: 1px solid rgba(200, 16, 46, .08)
+    }
+
+    .irow:last-child {
+      border: none
+    }
+
+    .ik {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      min-width: 88px;
+      flex-shrink: 0;
+      padding-top: 2px
+    }
+
+    .iv {
+      font-size: clamp(12px, 1.4vw, 14px);
+      color: var(--dark);
+      line-height: 1.5
+    }
+
+    /* ═══════════ CONTACT ═══════════ */
+    #contact {
+      background: var(--white)
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: clamp(28px, 6vw, 80px);
+      align-items: start
+    }
+
+    .c-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      color: var(--dark);
+      margin-bottom: 12px
+    }
+
+    .c-info>p {
+      font-size: clamp(13px, 1.5vw, 15px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 28px
+    }
+
+    .cdet {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 16px
+    }
+
+    .cicon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: var(--light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px
+    }
+
+    .cdtext strong {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 3px
+    }
+
+    .cdtext span {
+      font-size: clamp(12px, 1.4vw, 14px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .rform {
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(22px, 4vw, 44px)
+    }
+
+    .rform h3 {
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 6px;
+      letter-spacing: -.3px
+    }
+
+    .rform .fsub {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 22px
+    }
+
+    .frow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .fg {
+      margin-bottom: 14px
+    }
+
+    .fg label {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    .fg input,
+    .fg select,
+    .fg textarea {
+      width: 100%;
+      background: var(--white);
+      border: 1.5px solid rgba(200, 16, 46, .12);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--dark);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .fg input:focus,
+    .fg select:focus,
+    .fg textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(200, 16, 46, .08)
+    }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: rgba(0, 0, 0, .25)
+    }
+
+    .fg select {
+      cursor: pointer
+    }
+
+    .fg select option {
+      background: #fff;
+      color: var(--dark)
+    }
+
+    .fg textarea {
+      resize: vertical;
+      min-height: 90px
+    }
+
+    .fsub-btn {
+      width: 100%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 100px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all .25s;
+      margin-top: 4px
+    }
+
+    .fsub-btn:hover {
+      background: var(--red2);
+      box-shadow: 0 8px 28px rgba(200, 16, 46, .3);
+      transform: translateY(-2px)
+    }
+
+    .fnote {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 10px
+    }
+
+    #fok {
+      display: none;
+      background: var(--light);
+      border: 1px solid rgba(200, 16, 46, .25);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      color: var(--red);
+      font-weight: 600;
+      margin-top: 10px;
+      font-size: 14px
+    }
+
+    /* ═══════════ FOOTER ═══════════ */
+    footer {
+      background: var(--dark);
+      padding: clamp(36px, 5vw, 56px) var(--px) clamp(20px, 3vw, 32px)
+    }
+
+    .ft {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      margin-bottom: 18px
+    }
+
+    .fb {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff
+    }
+
+    .fb em {
+      color: var(--red);
+      font-style: normal
+    }
+
+    .ftag {
+      font-size: 10.5px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .3);
+      letter-spacing: 2px;
+      margin-top: 4px
+    }
+
+    .fnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      list-style: none
+    }
+
+    .fnav a {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .32);
+      transition: color .2s
+    }
+
+    .fnav a:hover {
+      color: var(--red)
+    }
+
+    .fbot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .fcopy,
+    .fgstin {
+      font-size: 10.5px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, .2);
+      letter-spacing: .5px
+    }
+
+    /* ═══════════ REVEAL ANIMATIONS ═══════════ */
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .rl {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .rr {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .rv.in,
+    .rl.in,
+    .rr.in {
+      opacity: 1;
+      transform: none
+    }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media(max-width:960px) {
+      #hero {
+        grid-template-columns: 1fr
+      }
+
+      .hero-3d {
+        max-width: 420px;
+        margin: 0 auto
+      }
+
+      #heroCanvas {
+        max-width: 100%
+      }
+
+      .nl {
+        display: none
+      }
+
+      .nham {
+        display: flex
+      }
+
+      .mfg-grid {
+        grid-template-columns: 1fr
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:600px) {
+      :root {
+        --px: 18px;
+        --py: 56px
+      }
+
+      .frow {
+        grid-template-columns: 1fr
+      }
+
+      .hero-btns {
+        flex-direction: column
+      }
+
+      .btn-solid,
+      .btn-out {
+        text-align: center;
+        width: 100%
+      }
+
+      .client-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .ft {
+        flex-direction: column
+      }
+
+      .fbot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px
+      }
+    }
+
+    @media(max-width:380px) {
+      .client-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .hero-h {
+        font-size: 36px
+      }
+    }
+
+    @media(min-width:1400px) {
+      :root {
+        --px: 100px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-brand">
-    <div class="nav-logo-mark">TO</div>
-    <div class="nav-name">Toolings <span>Ocean</span></div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#machines">Machines</a></li>
-    <li><a href="#customers">Clients</a></li>
-    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
-  </ul>
-  <button class="nav-ham" id="ham" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="drawer">
-  <a href="#about"     onclick="close()">About</a>
-  <a href="#products"  onclick="close()">Products</a>
-  <a href="#machines"  onclick="close()">Machines</a>
-  <a href="#customers" onclick="close()">Clients</a>
-  <a href="#contact"   onclick="close()">📨 Get a Quote</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow1"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Precision Engineering · Since 2013</div>
-    <h1 class="hero-title">Toolings<br><span class="ac">Ocean</span><br><span class="go">Bangalore</span></h1>
-    <p class="hero-sub">Manufacturers of precision plastic moulding components, press tool dies, moulding dies, jigs &amp; fixtures — serving aerospace, automobile, and electronics industries across India.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-p">Request a Quote</a>
-      <a href="#products" class="btn-s">Our Products</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-n">10+</div><div class="stat-l">Years Active</div></div>
-      <div><div class="stat-n">15+</div><div class="stat-l">Clients Served</div></div>
-      <div><div class="stat-n">6</div><div class="stat-l">Moulding Machines</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="fu">
-      <div class="about-card">
-        <h3>Who We Are</h3>
-        <p>Toolings Ocean is a Bangalore-based precision engineering firm established in 2013, under the proprietorship of Smt. Sudha R. Chavan.</p>
-        <p>Registered as a Small Scale Industry (Regn. No. 290201118412), we specialise in plastic injection moulding, tool and die making, and precision job works — serving clients across defence, aerospace, automobile, and electronics sectors.</p>
-        <div class="about-badge">EST. 2013</div>
-      </div>
-    </div>
-    <div class="fu">
-      <div class="s-label">Company Details</div>
-      <h2 class="s-title">Built on Precision,<br>Delivered with Trust</h2>
-      <div class="info-row"><span class="info-k">Company</span><span class="info-v">M/s Toolings Ocean</span></div>
-      <div class="info-row"><span class="info-k">Proprietor</span><span class="info-v">Smt. Sudha R. Chavan</span></div>
-      <div class="info-row"><span class="info-k">Established</span><span class="info-v">June 17, 2013</span></div>
-      <div class="info-row"><span class="info-k">GSTIN</span><span class="info-v">29AFJPC9663H1Z1</span></div>
-      <div class="info-row"><span class="info-k">SSI Reg. No.</span><span class="info-v">290201118412 / 17.6.13</span></div>
-      <div class="info-row"><span class="info-k">Address</span><span class="info-v">No.19, 15th Cross, B Street, Srighandhnagar, Hegganahalli, Bangalore – 560 091</span></div>
-      <div class="info-row"><span class="info-k">Contact</span><span class="info-v">Radhesh: +91 9986147974<br>Vinay: +91 6363765334</span></div>
-      <div class="info-row"><span class="info-k">Email</span><span class="info-v">chavantoolings@gmail.com</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="s-label fu">What We Make</div>
-  <h2 class="s-title fu">Products &amp; Capabilities</h2>
-  <p class="s-desc fu">From plastic moulding components to precision tooling, we deliver engineering excellence across multiple industries.</p>
-  <div class="prod-grid">
-    <div class="prod-card fu"><div class="prod-icon">🔩</div><h3>Moulding Dies</h3><p>Custom plastic injection mould dies for high-volume production. Built for durability and dimensional accuracy.</p><span class="prod-tag">Tool &amp; Die Making</span></div>
-    <div class="prod-card fu"><div class="prod-icon">⚙️</div><h3>Press Tool Dies</h3><p>Progressive and compound press tool dies for sheet metal forming. Precision-ground for consistent stroke performance.</p><span class="prod-tag">Press Tools</span></div>
-    <div class="prod-card fu"><div class="prod-icon">📐</div><h3>Jigs, Fixtures &amp; Gauges</h3><p>Custom jigs, fixtures, and calibrated gauges for assembly, drilling, and inspection processes.</p><span class="prod-tag">Tooling</span></div>
-    <div class="prod-card fu"><div class="prod-icon">🔌</div><h3>Connector Dust Caps</h3><p>Plastic moulded caps in all universal sizes (10 to 28). Available in red, yellow, white, and black — widely used in defence and aerospace.</p><span class="prod-tag">Plastic Moulding</span></div>
-    <div class="prod-card fu"><div class="prod-icon">⚡</div><h3>Electrical Components</h3><p>Capacitor caps, electrical enclosures, and spools for industrial and commercial applications.</p><span class="prod-tag">Electrical Parts</span></div>
-    <div class="prod-card fu"><div class="prod-icon">🚗</div><h3>Auto &amp; Aerospace Parts</h3><p>Precision plastic OEM components for automotive and aerospace sectors under strict quality control.</p><span class="prod-tag">OEM Components</span></div>
-    <div class="prod-card fu"><div class="prod-icon">🏭</div><h3>All Precision Job Works</h3><p>Surface grinding, EDM sparking, drilling, and other precision machining services for prototypes and production.</p><span class="prod-tag">Job Works</span></div>
-  </div>
-</section>
-
-<!-- MACHINES -->
-<section id="machines">
-  <div class="mach-inner">
-    <div class="s-label fu" style="color:var(--teal)">Infrastructure</div>
-    <h2 class="s-title lt fu">Our Machinery</h2>
-    <p class="s-desc fu" style="color:rgba(255,255,255,.42)">Equipped with modern precision machines for surface finishing, die making, and plastic injection moulding.</p>
-    <div class="mach-grid">
-      <div class="mach-grp fu">
-        <h3>Precision Machines</h3>
-        <ul class="mach-list">
-          <li>Surface Grinding Machine</li>
-          <li>Precision Drilling Machine</li>
-          <li>EDM Sparking Machine</li>
-        </ul>
-      </div>
-      <div class="mach-grp fu">
-        <h3>Injection Moulding Machines</h3>
-        <ul class="mach-list">
-          <li>45 GM Injection Moulding — Vertical, Fully Automatic, 5-Axis Hydraulic Control (×1)</li>
-          <li>55 GM Injection Moulding — Vertical, Fully Automatic, 5-Axis Hydraulic Control (×1)</li>
-          <li>80 GM Horizontal Screw Type — Micro Process Control (130 gms capacity)</li>
-          <li>45 GM Injection Moulding — Vertical Manual</li>
-          <li>Plastic Pre-Heating Oven</li>
-          <li>Plastic Reprocessing Machine</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CUSTOMERS -->
-<section id="customers">
-  <div class="s-label fu">Our Clients</div>
-  <h2 class="s-title fu">Valued Customers</h2>
-  <p class="s-desc fu">Trusted by leading names in defence, automation, automobile, and industrial sectors across India.</p>
-  <div class="cust-grid">
-    <div class="cust-card fu"><div class="cust-logo" style="background:#1E40AF">AM</div><div class="cust-name">Amphenol Interconnect India Pvt. Ltd</div><div class="cust-sec">Connectors &amp; Defence</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#0D6E6E">TM</div><div class="cust-name">Trinity Mobility Services Pvt. Ltd</div><div class="cust-sec">Mobility</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#C81919">TA</div><div class="cust-name">Toyota Auto Parts</div><div class="cust-sec">Automobile</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#7C3AED">PE</div><div class="cust-name">Penensula Electronic</div><div class="cust-sec">Electronics</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#065F46">VA</div><div class="cust-name">Vector Automation Pvt. Ltd</div><div class="cust-sec">Automation</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#B45309">HW</div><div class="cust-name">Honeywell Automation Ind. Ltd</div><div class="cust-sec">Industrial Automation</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#991B1B">BI</div><div class="cust-name">Bosch India Ltd.</div><div class="cust-sec">Engineering &amp; Technology</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#0D6B8A">KU</div><div class="cust-name">Kotak Urja Pvt. Ltd</div><div class="cust-sec">Energy</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#4A1D96">SV</div><div class="cust-name">Sri Veda Emsys Pvt. Ltd</div><div class="cust-sec">Electronics Manufacturing</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#1F2937">CS</div><div class="cust-name">Crystal Steel Décor Pvt. Ltd</div><div class="cust-sec">Interior &amp; Décor</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#1A6B3A">IT</div><div class="cust-name">ITTAM Systems Pvt. Ltd</div><div class="cust-sec">Systems &amp; Technology</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#92400E">AR</div><div class="cust-name">Aarpee Interior Fittings Pvt. Ltd</div><div class="cust-sec">Interior Fittings</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#1E3A5F">AO</div><div class="cust-name">Alfa Omega Machines Pvt. Ltd</div><div class="cust-sec">Machinery</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#5B4B00">SC</div><div class="cust-name">Sribal Construction Company</div><div class="cust-sec">Construction</div></div>
-    <div class="cust-card fu"><div class="cust-logo" style="background:#0F4C75">JR</div><div class="cust-name">JustRobotics</div><div class="cust-sec">Robotics &amp; Automation</div></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="c-info fu">
-      <div class="s-label">Reach Us</div>
-      <h2>Send Us Your<br>Requirement</h2>
-      <p>Fill in the form and one of our engineers will get back to you promptly. We welcome enquiries for all types of tooling, moulding, and precision job work.</p>
-      <div class="c-det"><div class="c-det-icon">📍</div><div class="c-det-text"><strong>Address</strong><span>No.19, 15th Cross, B Street, Srighandhnagar,<br>Hegganahalli, Bangalore – 560 091</span></div></div>
-      <div class="c-det"><div class="c-det-icon">📞</div><div class="c-det-text"><strong>Phone</strong><span>Radhesh: +91 9986147974<br>Vinay: +91 6363765334</span></div></div>
-      <div class="c-det"><div class="c-det-icon">✉️</div><div class="c-det-text"><strong>Email</strong><span>chavantoolings@gmail.com</span></div></div>
-      <div class="c-det"><div class="c-det-icon">🏢</div><div class="c-det-text"><strong>GSTIN</strong><span>29AFJPC9663H1Z1</span></div></div>
-    </div>
-    <div class="req-form fu">
-      <h3>Customer Request Form</h3>
-      <p class="f-sub">All fields marked * are required. Your enquiry will be sent directly to our team.</p>
-      <div id="fForm">
-        <div class="f-row">
-          <div class="f-grp"><label>Full Name *</label><input type="text" id="fn" placeholder="Your name" autocomplete="name"></div>
-          <div class="f-grp"><label>Company Name *</label><input type="text" id="co" placeholder="Your company" autocomplete="organization"></div>
-        </div>
-        <div class="f-row">
-          <div class="f-grp"><label>Email Address *</label><input type="email" id="em" placeholder="you@company.com" autocomplete="email"></div>
-          <div class="f-grp"><label>Phone Number *</label><input type="tel" id="ph" placeholder="+91 XXXXX XXXXX" autocomplete="tel"></div>
-        </div>
-        <div class="f-grp">
-          <label>Product / Service Required *</label>
-          <select id="pr">
-            <option value="" disabled selected>Select a category</option>
-            <option>Plastic Moulding Components</option>
-            <option>Connector Dust Caps</option>
-            <option>Moulding Dies / Tooling</option>
-            <option>Press Tool Dies</option>
-            <option>Jigs, Fixtures &amp; Gauges</option>
-            <option>Automobile / Aerospace Parts</option>
-            <option>Electrical Components</option>
-            <option>Precision Job Work</option>
-            <option>Other (specify below)</option>
-          </select>
-        </div>
-        <div class="f-row">
-          <div class="f-grp"><label>Quantity Required</label><input type="text" id="qt" placeholder="e.g. 500 pcs / 2 dies"></div>
-          <div class="f-grp"><label>Expected Delivery</label><input type="text" id="dl" placeholder="e.g. 30 days"></div>
-        </div>
-        <div class="f-grp"><label>Detailed Requirements *</label><textarea id="ms" placeholder="Describe your specifications, material, tolerances, or any drawings you can share later..."></textarea></div>
-        <button type="button" class="f-submit" onclick="send()">📨 &nbsp;Send Enquiry to Toolings Ocean</button>
-        <p class="f-note">Your request will be sent to chavantoolings@gmail.com</p>
-      </div>
-      <div id="f-success">✅ Thank you! Your enquiry has been received. Our team will contact you shortly.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="f-top">
-    <div>
-      <div class="f-brand">Toolings <span>Ocean</span></div>
-      <div class="f-tagline">Precision Engineering · Bangalore</div>
-    </div>
-    <ul class="f-nav">
+  <!-- NAV -->
+  <nav id="mainnav">
+    <a href="#hero" class="nb">
+      <div class="nlogo">TO</div>
+      <div class="nw">Toolings <em>Ocean</em></div>
+    </a>
+    <ul class="nl">
+      <li><a href="#process">Process</a></li>
+      <li><a href="#capabilities">Products</a></li>
+      <li><a href="#clients">Clients</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#machines">Machines</a></li>
-      <li><a href="#customers">Clients</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nq">Get a Quote</a></li>
     </ul>
+    <button class="nham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="ndraw" id="drawer">
+    <a href="#process" onclick="cd()">Process</a>
+    <a href="#capabilities" onclick="cd()">Products</a>
+    <a href="#clients" onclick="cd()">Clients</a>
+    <a href="#about" onclick="cd()">About</a>
+    <a href="#contact" onclick="cd()">📨 Get a Quote</a>
   </div>
-  <div class="f-bot">
-    <span class="f-copy">© 2013–2026 M/s Toolings Ocean. All rights reserved. Proprietor: Smt. Sudha R. Chavan</span>
-    <span class="f-gstin">GSTIN: 29AFJPC9663H1Z1</span>
-  </div>
-</footer>
 
-<script>
-/* ── Hamburger ─────────────────── */
-const ham=document.getElementById('ham'),dr=document.getElementById('drawer');
-ham.addEventListener('click',()=>{
-  const o=dr.classList.toggle('open');
-  ham.classList.toggle('open',o);
-  document.body.style.overflow=o?'hidden':'';
-});
-function close(){dr.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
-document.addEventListener('click',e=>{if(!ham.contains(e.target)&&!dr.contains(e.target))close();});
+  <!-- HERO -->
+  <section id="hero">
+    <!-- Left: text -->
+    <div class="hero-text rv">
+      <div class="hero-pill">Precision Engineering · Bangalore · Since 2013</div>
+      <h1 class="hero-h">
+        Plastic Mould<br>
+        <span class="red">&amp; Press Tool</span>
+        Manufacturers
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-p">End-to-end precision tooling — injection mould dies, press tool dies, jigs, fixtures, and all
+        plastic moulded components engineered for India's most demanding mechanical industries.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-solid">Request a Quote</a>
+        <a href="#process" class="btn-out">See Our Process</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hs-n" data-target="12">0</div>
+          <div class="hs-l">Years Active</div>
+        </div>
+        <div>
+          <div class="hs-n" data-target="21">0</div>
+          <div class="hs-l">Major Clients</div>
+        </div>
+        <div>
+          <div class="hs-n" data-target="5000">0</div>
+          <div class="hs-l">Parts / Year</div>
+        </div>
+      </div>
+    </div>
 
-/* ── Scroll animations ──────────── */
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.08});
-document.querySelectorAll('.fu').forEach(el=>io.observe(el));
+    <!-- Right: 3D canvas -->
+    <div class="hero-3d rv" style="transition-delay:.15s">
+      <canvas id="heroCanvas"></canvas>
+      <!-- <div class="canvas-badge">🔩 Live 3D — Injection Mould Tool</div> -->
+    </div>
 
-/* ── Active nav link ─────────────── */
-const secs=document.querySelectorAll('section[id]');
-const nla=document.querySelectorAll('.nav-links a:not(.nav-cta)');
-const sio=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){nla.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+e.target.id?'var(--teal)':'';})}});
-},{threshold:0.35});
-secs.forEach(s=>sio.observe(s));
+    <!-- Bottom strip -->
+    <div class="hero-strip">
+      <div class="strip-track" id="strip"></div>
+    </div>
+  </section>
 
-/* ── Form ────────────────────────── */
-function send(){
-  const g=id=>document.getElementById(id).value.trim();
-  const fn=g('fn'),co=g('co'),em=g('em'),ph=g('ph'),
-        pr=document.getElementById('pr').value,
-        qt=g('qt'),dl=g('dl'),ms=g('ms');
-  if(!fn||!co||!em||!ph||!pr||!ms){
-    alert('Please fill in all required fields (Name, Company, Email, Phone, Product, Requirements).');
-    return;
-  }
-  const sub=encodeURIComponent(`Customer Enquiry – ${pr} | ${co}`);
-  const bod=encodeURIComponent(
-`CUSTOMER ENQUIRY – TOOLINGS OCEAN
-===================================
-Name            : ${fn}
-Company         : ${co}
-Email           : ${em}
-Phone           : ${ph}
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="proc-inner">
+      <div class="ov rv">How We Work</div>
+      <h2 class="sh rv">Tool Manufacturing<br>Process</h2>
+      <p class="sp rv">From raw steel to approved first samples — our in-house toolroom covers every step of precision
+        mould and press tool manufacturing.</p>
 
-Product/Service : ${pr}
-Quantity        : ${qt||'Not specified'}
-Delivery        : ${dl||'Not specified'}
+      <!-- 3D process canvas -->
+      <!-- <div class="proc-3d-wrap rv">
+        <canvas id="procCanvas"></canvas>
+        <div class="proc-label">🏭 Live 3D — Press Tool Die Manufacturing</div>
+        <div class="proc-label2">Drag to Rotate</div>
+      </div> -->
 
-REQUIREMENTS:
-${ms}
+      <!-- Step cards -->
+      <div class="proc-steps">
+        <div class="pstep rv">
+          <div class="pstep-n">01 — DESIGN</div>
+          <div class="pstep-icon">📐</div>
+          <div class="pstep-t">CAD/CAM Design</div>
+          <div class="pstep-d">3D mould design with parting surface analysis, gate and runner layout, cooling channel
+            routing, and DFM review before machining release.</div>
+        </div>
+        <div class="pstep rv">
+          <div class="pstep-n">02 — MACHINING</div>
+          <div class="pstep-icon">⚙️</div>
+          <div class="pstep-t">CNC &amp; Grinding</div>
+          <div class="pstep-d">CNC milling of core-cavity blocks, precision drilling, and surface grinding to achieve
+            flatness within microns for perfect mould shut-off.</div>
+        </div>
+        <div class="pstep rv">
+          <div class="pstep-n">03 — EDM</div>
+          <div class="pstep-icon">⚡</div>
+          <div class="pstep-t">EDM Sparking</div>
+          <div class="pstep-d">Electrical discharge machining for sharp internal ribs, fine textures, and complex cavity
+            forms impossible to achieve by cutting tools alone.</div>
+        </div>
+        <div class="pstep rv">
+          <div class="pstep-n">04 — FITTING</div>
+          <div class="pstep-icon">🔩</div>
+          <div class="pstep-t">Assembly &amp; Lapping</div>
+          <div class="pstep-d">Core-cavity assembly with ejector system, cooling connections, and guide pillars. Hand
+            lapping of parting surfaces for zero flash.</div>
+        </div>
+        <div class="pstep rv">
+          <div class="pstep-n">05 — TRIAL</div>
+          <div class="pstep-icon">🔬</div>
+          <div class="pstep-t">Mould Trial</div>
+          <div class="pstep-d">First article injection trial on our in-house machines. Dimensional inspection of moulded
+            samples. Corrections until approved parts are achieved.</div>
+        </div>
+        <div class="pstep rv">
+          <div class="pstep-n">06 — DELIVERY</div>
+          <div class="pstep-icon">✅</div>
+          <div class="pstep-t">QC &amp; Dispatch</div>
+          <div class="pstep-d">Full dimensional report, surface finish check, and protective packaging. Approved samples
+            and inspection records dispatched with the tool.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
----
-Sent via Toolings Ocean website`);
-  window.location.href=`mailto:chavantoolings@gmail.com?subject=${sub}&body=${bod}`;
-  document.getElementById('f-success').style.display='block';
-  document.getElementById('fForm').style.display='none';
-}
-</script>
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="ov rv">What We Make</div>
+    <h2 class="sh rv">Precision Engineering<br>Capabilities</h2>
+    <p class="sp rv">From prototype tooling to full production moulds — any plastic moulded component, press-formed
+      part, or machined fixture can be manufactured at Toolings Ocean.</p>
+
+    <div class="cap-grid">
+      <div class="cap-card rv">
+        <div class="cap-icon">🔩</div>
+        <div class="cap-t">Injection Mould Dies</div>
+        <p class="cap-p">Single to multi-cavity mould tooling in P20/H13 tool steel for all thermoplastic and thermoset
+          materials. Core-cavity sets, side actions, and hot runner systems.</p><span class="cap-tag">Mould
+          Making</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">🛠️</div>
+        <div class="cap-t">Press Tool Dies</div>
+        <p class="cap-p">Progressive, compound, and blanking dies for sheet metal stamping. Precision-ground punch-die
+          clearances for clean, burr-free stampings at volume.</p><span class="cap-tag">Press Tools</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">🏗️</div>
+        <div class="cap-t">All Plastic Moulded Components</div>
+        <p class="cap-p">Any injection moulded plastic part — enclosures, brackets, connectors, housings, covers,
+          spools, caps, and structural components in ABS, PP, Nylon, PC, POM, and more.</p><span class="cap-tag">Plastic
+          Moulding</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">📏</div>
+        <div class="cap-t">Jigs, Fixtures &amp; Gauges</div>
+        <p class="cap-p">Custom drilling jigs, welding fixtures, assembly aids, and inspection gauges for production
+          lines. Go/no-go gauges to tight tolerances for quality assurance.</p><span class="cap-tag">Tooling Aids</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">🛡️</div>
+        <div class="cap-t">Defence &amp; Aerospace Parts</div>
+        <p class="cap-p">MIL-spec connector dust caps (sizes 10–28), enclosure mouldings, and precision housings for
+          ISRO, DRDO, HAL, and Amphenol-grade applications.</p><span class="cap-tag">Defence Grade</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">🚗</div>
+        <div class="cap-t">Automotive Components</div>
+        <p class="cap-p">Under-hood parts, dashboard inserts, connector covers, and structural clips in high-performance
+          engineering polymers. PPAP documentation available.</p><span class="cap-tag">Automotive OEM</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">💡</div>
+        <div class="cap-t">Electrical &amp; Electronic Enclosures</div>
+        <p class="cap-p">Capacitor caps, relay housings, terminal blocks, and PCB enclosures in flame-retardant
+          plastics. Tight dimensional control for snap-fit and press-fit assemblies.</p><span class="cap-tag">Electrical
+          Parts</span>
+      </div>
+      <div class="cap-card rv">
+        <div class="cap-icon">🔧</div>
+        <div class="cap-t">Precision Job Works</div>
+        <p class="cap-p">Contract surface grinding, CNC turning, milling, drilling, and tapping. We accept job work for
+          single pieces, prototypes, and small to large batch quantities.</p><span class="cap-tag">Job Work</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANUFACTURING HIGHLIGHT -->
+  <section id="mfg">
+    <div class="mfg-grid">
+      <div class="mfg-3d rl">
+        <canvas id="dieCanvas"></canvas>
+        <!-- <div class="die-tag">3D — Mould Cross-Section</div> -->
+      </div>
+      <div class="rr">
+        <div class="ov">Engineering Excellence</div>
+        <h2 class="sh">What Sets Our<br>Tooling Apart</h2>
+        <p
+          style="font-size:clamp(14px,1.7vw,16px);font-weight:300;color:var(--muted);line-height:1.82;margin-bottom:28px">
+          Every tool built at Toolings Ocean is engineered for repeatability, long service life, and ease of
+          maintenance. Our experienced toolmakers ensure quality at every stage.</p>
+        <div class="mfg-specs">
+          <div class="spec">
+            <div class="spec-dot"></div>
+            <div><strong>Tolerance to ±0.01mm</strong><span>CNC machining and surface grinding routinely achieve
+                dimensional tolerances of ±0.01mm for critical mould and die features.</span></div>
+          </div>
+          <div class="spec">
+            <div class="spec-dot"></div>
+            <div><strong>P20 / H13 Tool Steel Standard</strong><span>Pre-hardened P20 for medium volumes and
+                heat-treated H13 for high-volume production tooling exceeding 500,000 shots.</span></div>
+          </div>
+          <div class="spec">
+            <div class="spec-dot"></div>
+            <div><strong>Optimised Cooling Design</strong><span>Cooling channel layout designed to reduce cycle time and
+                eliminate warpage and sink marks on moulded components.</span></div>
+          </div>
+          <div class="spec">
+            <div class="spec-dot"></div>
+            <div><strong>In-House Mould Trials</strong><span>All moulds are trialled in-house on our injection moulding
+                machines before delivery. Approved first samples provided.</span></div>
+          </div>
+          <div class="spec">
+            <div class="spec-dot"></div>
+            <div><strong>Prototype to Mass Production</strong><span>Aluminium prototype tooling for early validation.
+                Full hardened steel production tooling for 100,000+ shot production life.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients">
+    <div class="ov rv">Industry Trust</div>
+    <h2 class="sh rv">Our Major Clients</h2>
+    <p class="sp rv">Trusted by OEMs, research institutions, and technology leaders across defence, automotive,
+      aerospace, energy, and electronics sectors across India.</p>
+
+    <!-- Marquee -->
+    <div class="marquee-wrap rv">
+      <div class="marquee" id="marquee"></div>
+    </div>
+
+    <!-- Client grid with custom SVG logos -->
+    <div class="client-grid">
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#EB0A1E"><svg viewBox="0 0 50 50" width="50" height="50">
+            <ellipse cx="25" cy="25" rx="20" ry="20" fill="#EB0A1E" />
+            <ellipse cx="25" cy="25" rx="9" ry="14" fill="none" stroke="white" stroke-width="2.2" />
+            <ellipse cx="25" cy="25" rx="18" ry="8" fill="none" stroke="white" stroke-width="2.2" />
+          </svg></div>
+        <div class="cc-name">Toyota Auto Parts</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#1C1C1E"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#1C1C1E" />
+            <polygon points="25,8 42,38 8,38" fill="none" stroke="#00C8FF" stroke-width="2" />
+            <polygon points="25,18 36,38 14,38" fill="none" stroke="#00C8FF" stroke-width="1.2" />
+          </svg></div>
+        <div class="cc-name">Physics Motors</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#003087"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#003087" /><text x="25" y="29" font-family="Arial" font-size="11"
+              font-weight="900" fill="white" text-anchor="middle">AMP</text>
+            <rect x="10" y="33" width="30" height="2.5" fill="#E8002D" />
+          </svg></div>
+        <div class="cc-name">Amphenol</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#0057B8"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#0057B8" />
+            <circle cx="25" cy="22" r="9" fill="none" stroke="white" stroke-width="2" />
+            <path d="M16 36c0-5 4-9 9-9s9 4 9 9" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" />
+          </svg></div>
+        <div class="cc-name">Ample Digital</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#B91C1C"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#B91C1C" />
+            <rect x="18" y="9" width="5" height="32" rx="1" fill="white" />
+            <rect x="27" y="9" width="5" height="32" rx="1" fill="white" />
+            <rect x="12" y="30" width="26" height="4" rx="1" fill="rgba(255,255,255,.45)" />
+          </svg></div>
+        <div class="cc-name">Bangalore Refinery</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#166534"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#166534" />
+            <path d="M14 25c0-6 5-11 11-11s11 5 11 11-5 11-11 11" stroke="white" stroke-width="2" fill="none"
+              stroke-linecap="round" />
+            <circle cx="25" cy="25" r="4" fill="white" />
+          </svg></div>
+        <div class="cc-name">Camduct India</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#EA580C"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#EA580C" />
+            <path d="M12 18h26M12 25h20M12 32h26" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+            <circle cx="38" cy="25" r="4" fill="white" />
+          </svg></div>
+        <div class="cc-name">Enginium Design</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#DC2626"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#DC2626" />
+            <path d="M12 12h10v26H12zM28 12h10v26H28z" fill="white" opacity=".9" />
+            <path d="M22 25h6" stroke="white" stroke-width="3" stroke-linecap="round" />
+          </svg></div>
+        <div class="cc-name">Honeywell Automation</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#15803D"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#15803D" />
+            <circle cx="25" cy="21" r="9" fill="none" stroke="#FDE047" stroke-width="2" />
+            <path d="M18 21h14M25 14v14" stroke="#FDE047" stroke-width="1.5" stroke-linecap="round" /><text x="25"
+              y="40" font-family="Arial" font-size="8.5" font-weight="700" fill="white" text-anchor="middle">ICAR</text>
+          </svg></div>
+        <div class="cc-name">ICAR</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#1E3A5F"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#1E3A5F" />
+            <circle cx="25" cy="20" r="11" fill="none" stroke="#C8A951" stroke-width="2" />
+            <circle cx="25" cy="20" r="5" fill="none" stroke="#C8A951" stroke-width="1.2" />
+            <circle cx="25" cy="20" r="2" fill="#C8A951" /><text x="25" y="41" font-family="Arial" font-size="8"
+              font-weight="700" fill="#C8A951" text-anchor="middle">IISc</text>
+          </svg></div>
+        <div class="cc-name">IISc Bangalore</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#2563EB"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#2563EB" />
+            <path d="M12 25l13 13 13-26" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg></div>
+        <div class="cc-name">Kovident</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#991B1B"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#991B1B" />
+            <rect x="22" y="10" width="6" height="30" rx="1" fill="white" />
+            <rect x="10" y="22" width="30" height="6" rx="1" fill="white" />
+          </svg></div>
+        <div class="cc-name">Lanka Swisstek</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#1E1B4B"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#1E1B4B" />
+            <path d="M12 25 Q18 13 25 25 Q32 37 38 25" stroke="#FBBF24" stroke-width="2.5" fill="none"
+              stroke-linecap="round" />
+            <circle cx="12" cy="25" r="3" fill="#FBBF24" />
+            <circle cx="38" cy="25" r="3" fill="#FBBF24" />
+          </svg></div>
+        <div class="cc-name">Miracle Electronics</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#1E3A5F"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#1E3A5F" />
+            <path d="M10 38 L25 9 L40 38z" fill="none" stroke="#F97316" stroke-width="2.5" />
+            <circle cx="25" cy="28" r="5" fill="#F97316" opacity=".85" /><text x="25" y="48" font-family="Arial"
+              font-size="7.5" font-weight="900" fill="white" text-anchor="middle">HAL</text>
+          </svg></div>
+        <div class="cc-name">HAL</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#6D28D9"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#6D28D9" />
+            <rect x="10" y="16" width="30" height="18" rx="2" fill="none" stroke="white" stroke-width="1.8" />
+            <circle cx="17" cy="25" r="2.5" fill="white" />
+            <circle cx="25" cy="25" r="2.5" fill="white" />
+            <circle cx="33" cy="25" r="2.5" fill="white" />
+          </svg></div>
+        <div class="cc-name">Peninsula Electronics</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#059669"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#059669" />
+            <path d="M25 11v28M11 25h28" stroke="white" stroke-width="4.5" stroke-linecap="round" />
+          </svg></div>
+        <div class="cc-name">Prognosys Medicals</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#C81D35"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#C81D35" />
+            <circle cx="25" cy="25" r="12" fill="none" stroke="white" stroke-width="2" />
+            <path d="M19 25h12M25 19v12" stroke="white" stroke-width="2" stroke-linecap="round" />
+          </svg></div>
+        <div class="cc-name">Redon</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#0891B2"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#0891B2" />
+            <path d="M9 30 Q18 20 25 30 Q32 40 41 30" stroke="white" stroke-width="2.5" fill="none"
+              stroke-linecap="round" />
+            <path d="M9 22 Q18 12 25 22 Q32 32 41 22" stroke="rgba(255,255,255,.4)" stroke-width="1.5" fill="none"
+              stroke-linecap="round" />
+          </svg></div>
+        <div class="cc-name">Sea6 Energy</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#92400E"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#92400E" />
+            <rect x="11" y="11" width="28" height="7" rx="1" fill="rgba(255,255,255,.9)" />
+            <rect x="11" y="22" width="20" height="7" rx="1" fill="rgba(255,255,255,.65)" />
+            <rect x="11" y="33" width="24" height="7" rx="1" fill="rgba(255,255,255,.45)" />
+          </svg></div>
+        <div class="cc-name">Sribal Fabtek</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#1F2937"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#1F2937" />
+            <rect x="13" y="9" width="24" height="32" rx="2" fill="none" stroke="#60A5FA" stroke-width="1.8" />
+            <rect x="17" y="16" width="7" height="9" rx="1" fill="#60A5FA" opacity=".6" />
+            <rect x="26" y="16" width="7" height="9" rx="1" fill="#60A5FA" opacity=".6" />
+            <rect x="17" y="28" width="16" height="7" rx="1" fill="#60A5FA" opacity=".3" />
+          </svg></div>
+        <div class="cc-name">Torfenster System</div>
+      </div>
+
+      <div class="cc rv">
+        <div class="cc-logo" style="background:#111111"><svg viewBox="0 0 50 50" width="50" height="50">
+            <rect width="50" height="50" rx="10" fill="#111" />
+            <path d="M10 25l5 9 5-18 5 13 5-7 5 9 5-6" stroke="white" stroke-width="2" fill="none"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <div class="cc-name">WeWork</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="rl">
+        <div class="about-card">
+          <h3>M/s Toolings Ocean</h3>
+          <p>A Bangalore-based precision engineering firm founded in 2013 by Smt. Sudha R. Chavan. We operate a fully
+            equipped in-house toolroom at Hegganahalli, Bangalore.</p>
+          <p>Our skilled toolmakers bring deep expertise in injection mould design, progressive die engineering, and
+            precision machining — delivering tooling for India's most demanding mechanical industries since 2013.</p>
+          <div class="estbadge">Est. June 17, 2013</div>
+        </div>
+      </div>
+      <div class="rr">
+        <div class="ov">Company Details</div>
+        <h2 class="sh">Precision Rooted<br>in Bangalore</h2>
+        <div class="irows">
+          <div class="irow"><span class="ik">Company</span><span class="iv">M/s Toolings Ocean</span></div>
+          <div class="irow"><span class="ik">Proprietor</span><span class="iv">Smt. Sudha R. Chavan</span></div>
+          <div class="irow"><span class="ik">Founded</span><span class="iv">June 17, 2013</span></div>
+          <div class="irow"><span class="ik">GSTIN</span><span class="iv">29AFJPC9663H1Z1</span></div>
+          <div class="irow"><span class="ik">SSI Reg.</span><span class="iv">290201118412 / 17.6.13</span></div>
+          <div class="irow"><span class="ik">Location</span><span class="iv">No.19, 15th Cross, B Street,
+              Srighandhnagar, Hegganahalli, Bangalore – 560 091</span></div>
+          <div class="irow"><span class="ik">Phone</span><span class="iv">Radhesh: +91 9986147974<br>Vinay: +91
+              6363765334</span></div>
+          <div class="irow"><span class="ik">Email</span><span class="iv">chavantoolings@gmail.com</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="ov rv">Reach Us</div>
+    <h2 class="sh rv">Request an Engineering<br>Quote</h2>
+    <div class="contact-grid">
+      <div class="rl">
+        <p class="c-info"
+          style="font-size:clamp(14px,1.7vw,16px);font-weight:300;color:var(--muted);line-height:1.82;margin-bottom:28px">
+          Share your technical requirements and our team will respond with a detailed quote within 24 hours. We work
+          with mechanical industries of all sizes.</p>
+        <div class="cdet">
+          <div class="cicon">📍</div>
+          <div class="cdtext"><strong>Address</strong><span>No.19, 15th Cross, B Street,
+              Srighandhnagar,<br>Hegganahalli, Bangalore – 560 091</span></div>
+        </div>
+        <div class="cdet">
+          <div class="cicon">📞</div>
+          <div class="cdtext"><strong>Phone</strong><span>Radhesh Chavan: +91 9986147974<br>Vinay Chavan: +91
+              6363765334</span></div>
+        </div>
+        <div class="cdet">
+          <div class="cicon">✉️</div>
+          <div class="cdtext"><strong>Email</strong><span>chavantoolings@gmail.com</span></div>
+        </div>
+        <div class="cdet">
+          <div class="cicon">🏢</div>
+          <div class="cdtext"><strong>GSTIN</strong><span>29AFJPC9663H1Z1</span></div>
+        </div>
+      </div>
+      <div class="rr">
+        <div class="rform">
+          <h3>Engineering Enquiry</h3>
+          <p class="fsub">All * fields required — we respond within 24 hours.</p>
+          <div id="ff">
+            <div class="frow">
+              <div class="fg"><label>Full Name *</label><input type="text" id="fn" placeholder="Your name"
+                  autocomplete="name"></div>
+              <div class="fg"><label>Company *</label><input type="text" id="co" placeholder="Company name"
+                  autocomplete="organization"></div>
+            </div>
+            <div class="frow">
+              <div class="fg"><label>Email *</label><input type="email" id="em" placeholder="you@company.com"
+                  autocomplete="email"></div>
+              <div class="fg"><label>Phone *</label><input type="tel" id="ph" placeholder="+91 XXXXX XXXXX"
+                  autocomplete="tel"></div>
+            </div>
+            <div class="fg">
+              <label>Product / Service *</label>
+              <select id="pr">
+                <option value="" disabled selected>Select a category</option>
+                <option>Injection Mould Die</option>
+                <option>Press Tool Die</option>
+                <option>Plastic Moulded Components</option>
+                <option>Jigs, Fixtures &amp; Gauges</option>
+                <option>Defence / Aerospace Components</option>
+                <option>Automotive Plastic Parts</option>
+                <option>Electrical Enclosures</option>
+                <option>Precision Job Work</option>
+                <option>Other (describe below)</option>
+              </select>
+            </div>
+            <div class="frow">
+              <div class="fg"><label>Material / Polymer</label><input type="text" id="mat"
+                  placeholder="e.g. ABS, PP, H13 steel"></div>
+              <div class="fg"><label>Quantity</label><input type="text" id="qty" placeholder="e.g. 1 die / 500 pcs">
+              </div>
+            </div>
+            <div class="fg"><label>Technical Requirements *</label><textarea id="ms"
+                placeholder="Part geometry, tolerances, surface finish, application, standards (MIL-spec, PPAP)..."></textarea>
+            </div>
+            <button type="button" class="fsub-btn" onclick="send()">Submit Engineering Enquiry →</button>
+            <p class="fnote">Sent to chavantoolings@gmail.com · Response within 24 hours</p>
+          </div>
+          <div id="fok">✅ &nbsp;Enquiry received — we'll contact you within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft">
+      <div>
+        <div class="fb">Toolings <em>Ocean</em></div>
+        <div class="ftag">Precision Plastic Tooling · Bangalore, India</div>
+      </div>
+      <ul class="fnav">
+        <li><a href="#process">Process</a></li>
+        <li><a href="#capabilities">Products</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fbot">
+      <span class="fcopy">© 2013–2026 M/s Toolings Ocean. All rights reserved. Proprietor: Smt. Sudha R. Chavan</span>
+      <span class="fgstin">GSTIN: 29AFJPC9663H1Z1</span>
+    </div>
+  </footer>
+
+  <script>
+    /* ══════════════════════════════════════════
+       THREE.JS — HERO: Injection Mould Tool
+    ══════════════════════════════════════════ */
+    (function () {
+      const canvas = document.getElementById('heroCanvas');
+      if (!canvas) return;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+      camera.position.set(0, 3, 8);
+      camera.lookAt(0, 0, 0);
+
+      function resize() {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      /* Lights */
+      scene.add(new THREE.AmbientLight(0xfff5f5, 1.0));
+      const dir = new THREE.DirectionalLight(0xfff0f0, 3.0);
+      dir.position.set(5, 10, 8);
+      dir.castShadow = true;
+      scene.add(dir);
+      const redLight = new THREE.PointLight(0xC8102E, 3, 10);
+      redLight.position.set(-3, 4, 3);
+      scene.add(redLight);
+      const fillLight = new THREE.PointLight(0xffffff, 1.5, 12);
+      fillLight.position.set(4, -2, 4);
+      scene.add(fillLight);
+
+      /* Materials */
+      const steelMat = new THREE.MeshStandardMaterial({ color: 0xd0c8c0, metalness: 0.85, roughness: 0.12, envMapIntensity: 1.0 });
+      const steelDark = new THREE.MeshStandardMaterial({ color: 0x9a9090, metalness: 0.9, roughness: 0.08 });
+      const redMat = new THREE.MeshStandardMaterial({ color: 0xC8102E, metalness: 0.4, roughness: 0.35, emissive: 0xC8102E, emissiveIntensity: 0.08 });
+      const coreMat = new THREE.MeshStandardMaterial({ color: 0xe8ddd5, metalness: 0.7, roughness: 0.2 });
+      const cavMat = new THREE.MeshStandardMaterial({ color: 0xb8b0a8, metalness: 0.8, roughness: 0.1 });
+
+      const group = new THREE.Group();
+      scene.add(group);
+
+      /* === CORE HALF (top plate) === */
+      const coreHalf = new THREE.Group();
+
+      // Main plate
+      const topPlate = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.7, 2.8), steelMat);
+      topPlate.position.y = 0.85;
+      topPlate.castShadow = true;
+      coreHalf.add(topPlate);
+
+      // Core insert
+      const coreInsert = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.55, 1.2), coreMat);
+      coreInsert.position.set(0, 0.45, 0);
+      coreHalf.add(coreInsert);
+
+      // Core boss (product shape protrusion)
+      const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.32, 0.4, 16), coreMat);
+      boss.position.set(0, 0.25, 0);
+      coreHalf.add(boss);
+
+      // Guide pillars (4 corners)
+      [[-1.4, -1.0], [1.4, -1.0], [-1.4, 1.0], [1.4, 1.0]].forEach(([x, z]) => {
+        const pill = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 1.8, 16), steelDark);
+        pill.position.set(x, 0.45, z);
+        coreHalf.add(pill);
+      });
+
+      // Cooling channel holes
+      [-0.7, 0.7].forEach(x => {
+        const cool = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 3.8, 12), redMat);
+        cool.rotation.z = Math.PI / 2;
+        cool.position.set(x, 0.85, 0);
+        coreHalf.add(cool);
+      });
+
+      group.add(coreHalf);
+
+      /* === CAVITY HALF (bottom plate) === */
+      const cavHalf = new THREE.Group();
+
+      const botPlate = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.7, 2.8), steelMat);
+      botPlate.position.y = -0.85;
+      botPlate.castShadow = true;
+      cavHalf.add(botPlate);
+
+      // Cavity insert
+      const cavInsert = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.55, 1.2), cavMat);
+      cavInsert.position.set(0, -0.45, 0);
+      cavHalf.add(cavInsert);
+
+      // Cavity recess (product pocket)
+      const pocket = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.26, 0.35, 16), cavMat);
+      pocket.position.set(0, -0.26, 0);
+      cavHalf.add(pocket);
+
+      // Ejector pins
+      [-0.5, 0, 0.5].forEach(x => {
+        const ej = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 10), redMat);
+        ej.position.set(x, -0.95, 0);
+        cavHalf.add(ej);
+      });
+
+      // Guide bushes
+      [[-1.4, -1.0], [1.4, -1.0], [-1.4, 1.0], [1.4, 1.0]].forEach(([x, z]) => {
+        const bush = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.4, 16), redMat);
+        bush.position.set(x, -0.45, z);
+        cavHalf.add(bush);
+      });
+
+      group.add(cavHalf);
+
+      /* === BASE PLATE === */
+      const basePlate = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.22, 3.0), steelDark);
+      basePlate.position.y = -1.31;
+      basePlate.receiveShadow = true;
+      group.add(basePlate);
+
+      /* === EJECTOR PLATE === */
+      const ejPlate = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.16, 2.4), steelDark);
+      ejPlate.position.y = -1.16;
+      group.add(ejPlate);
+
+      /* === TOP CLAMP PLATE === */
+      const topClamp = new THREE.Mesh(new THREE.BoxGeometry(3.8, 0.22, 3.0), steelDark);
+      topClamp.position.y = 1.31;
+      topClamp.castShadow = true;
+      group.add(topClamp);
+
+      /* === SPRUE BUSH === */
+      const sprue = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.06, 1.2, 12), redMat);
+      sprue.position.set(0, 1.0, 0);
+      group.add(sprue);
+
+      /* Red accent ring on parting line */
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.018, 8, 60), redMat);
+      ring.rotation.x = Math.PI / 2;
+      ring.position.y = 0.02;
+      group.add(ring);
+
+      group.rotation.x = 0.25;
+      group.rotation.y = -0.4;
+
+      /* Mould opening animation */
+      let mouldOpen = false;
+      let openProgress = 0;
+      let direction = 1;
+
+      /* Mouse interaction */
+      let isDown = false, lastX = 0, lastY = 0, rotY = -0.4, rotX = 0.25;
+      canvas.addEventListener('mousedown', e => { isDown = true; lastX = e.clientX; lastY = e.clientY });
+      canvas.addEventListener('touchstart', e => { isDown = true; lastX = e.touches[0].clientX; lastY = e.touches[0].clientY }, { passive: true });
+      window.addEventListener('mouseup', () => isDown = false);
+      window.addEventListener('touchend', () => isDown = false);
+      canvas.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        rotY += (e.clientX - lastX) * 0.008;
+        rotX += (e.clientY - lastY) * 0.005;
+        rotX = Math.max(-0.6, Math.min(0.6, rotX));
+        lastX = e.clientX; lastY = e.clientY;
+      });
+      canvas.addEventListener('touchmove', e => {
+        if (!isDown) return;
+        rotY += (e.touches[0].clientX - lastX) * 0.008;
+        rotX += (e.touches[0].clientY - lastY) * 0.005;
+        lastX = e.touches[0].clientX; lastY = e.touches[0].clientY;
+      }, { passive: true });
+
+      /* Mould open/close cycle */
+      setInterval(() => { mouldOpen = !mouldOpen; direction = mouldOpen ? 1 : -1; }, 3000);
+
+      let t = 0;
+      function tick() {
+        requestAnimationFrame(tick);
+        t += 0.012;
+
+        // Smooth rotation
+        group.rotation.y += (rotY - group.rotation.y) * 0.06;
+        group.rotation.x += (rotX - group.rotation.x) * 0.06;
+        if (!isDown) rotY += 0.004;
+
+        // Mould open/close
+        openProgress += direction * 0.012;
+        openProgress = Math.max(0, Math.min(1, openProgress));
+        const ease = openProgress < 0.5 ? 2 * openProgress * openProgress : -1 + (4 - 2 * openProgress) * openProgress;
+        const openAmt = ease * 0.75;
+        coreHalf.position.y = openAmt;
+        cavHalf.position.y = -openAmt;
+
+        // Pulsing red light
+        redLight.intensity = 2.5 + Math.sin(t * 1.5) * 0.8;
+
+        renderer.render(scene, camera);
+      }
+      tick();
+    })();
+
+    /* ══════════════════════════════════════════
+       THREE.JS — PROCESS SECTION: Press Tool
+    ══════════════════════════════════════════ */
+    (function () {
+      const canvas = document.getElementById('procCanvas');
+      if (!canvas) return;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
+      camera.position.set(0, 5, 12);
+      camera.lookAt(0, 0, 0);
+
+      function resize() {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      scene.add(new THREE.AmbientLight(0xfff5f5, 1.2));
+      const dir = new THREE.DirectionalLight(0xffffff, 2.5);
+      dir.position.set(8, 12, 8);
+      dir.castShadow = true;
+      scene.add(dir);
+      const rL = new THREE.PointLight(0xC8102E, 4, 14);
+      rL.position.set(-5, 5, 4);
+      scene.add(rL);
+      const blueL = new THREE.PointLight(0xfff0e0, 2, 12);
+      blueL.position.set(5, -2, 5);
+      scene.add(blueL);
+
+      const steelM = new THREE.MeshStandardMaterial({ color: 0xccc0b8, metalness: 0.88, roughness: 0.1 });
+      const steelD = new THREE.MeshStandardMaterial({ color: 0x888080, metalness: 0.9, roughness: 0.08 });
+      const redM = new THREE.MeshStandardMaterial({ color: 0xC8102E, metalness: 0.35, roughness: 0.4, emissive: 0xC8102E, emissiveIntensity: 0.1 });
+      const goldM = new THREE.MeshStandardMaterial({ color: 0xd4a030, metalness: 0.7, roughness: 0.2 });
+
+      const world = new THREE.Group();
+      scene.add(world);
+
+      /* === PRESS TOOL (Die set with punch/die) === */
+      function makePressTool(x) {
+        const g = new THREE.Group();
+
+        // Bottom die plate
+        const dieBase = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.35, 1.6), steelM);
+        dieBase.position.y = -0.5;
+        dieBase.castShadow = true;
+        g.add(dieBase);
+
+        // Die block
+        const dieBlock = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.45, 1.0), steelD);
+        dieBlock.position.y = -0.145;
+        g.add(dieBlock);
+
+        // Die opening (blank thru-hole shape)
+        const dieHole = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.5, 16), redM);
+        dieHole.position.y = -0.145;
+        g.add(dieHole);
+
+        // Punch holder (top)
+        const punchHolder = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.3, 1.4), steelM);
+        punchHolder.position.y = 0.65;
+        punchHolder.castShadow = true;
+        g.add(punchHolder);
+
+        // Punch
+        const punch = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.2, 0.5, 16), steelD);
+        punch.position.y = 0.32;
+        g.add(punch);
+
+        // Punch tip (red)
+        const pTip = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.08, 16), redM);
+        pTip.position.y = 0.07;
+        pTip.castShadow = true;
+        g.add(pTip);
+
+        // Stock strip (sheet metal)
+        const strip = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.04, 0.6), goldM);
+        strip.position.y = 0.0;
+        g.add(strip);
+
+        // Guide posts
+        [[-0.85, -0.6], [0.85, -0.6], [-0.85, 0.6], [0.85, 0.6]].forEach(([px, pz]) => {
+          const post = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 1.6, 12), steelD);
+          post.position.set(px, 0.3, pz);
+          g.add(post);
+        });
+
+        g.position.x = x;
+        return g;
+      }
+
+      /* 4 press tool dies in a row */
+      const dies = [];
+      [-4.5, -1.5, 1.5, 4.5].forEach((x, i) => {
+        const d = makePressTool(x);
+        d.rotation.y = i * 0.15;
+        world.add(d);
+        dies.push(d);
+      });
+
+      /* Ground plane */
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(30, 20), new THREE.MeshStandardMaterial({ color: 0xfff5f5, roughness: 0.9, metalness: 0 }));
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = -0.72;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      /* Mouse rotate */
+      let isDn = false, lx = 0, ry = 0;
+      canvas.addEventListener('mousedown', e => { isDn = true; lx = e.clientX });
+      canvas.addEventListener('touchstart', e => { isDn = true; lx = e.touches[0].clientX }, { passive: true });
+      window.addEventListener('mouseup', () => isDn = false);
+      window.addEventListener('touchend', () => isDn = false);
+      canvas.addEventListener('mousemove', e => { if (isDn) { ry += (e.clientX - lx) * 0.007; lx = e.clientX; } });
+      canvas.addEventListener('touchmove', e => { if (isDn) { ry += (e.touches[0].clientX - lx) * 0.007; lx = e.touches[0].clientX; } }, { passive: true });
+
+      let t = 0;
+      function tick() {
+        requestAnimationFrame(tick);
+        t += 0.016;
+
+        world.rotation.y += (ry - world.rotation.y) * 0.05;
+        if (!isDn) ry += 0.003;
+
+        // Animate punches going up and down offset
+        dies.forEach((d, i) => {
+          const ph = d.children.find(c => c.geometry && c.geometry.type === 'CylinderGeometry' && c.position.y > 0.5);
+          if (ph) {
+            const phase = t * 1.8 + i * 1.4;
+            const stroke = Math.sin(phase) * 0.5 + 0.5;
+            ph.position.y = 0.65 - stroke * 0.52;
+          }
+          // punch tip follows
+          const pt = d.children.find(c => c.geometry && c.position.y > 0 && c.position.y < 0.2);
+          if (pt) {
+            const phase = t * 1.8 + i * 1.4;
+            const stroke = Math.sin(phase) * 0.5 + 0.5;
+            pt.position.y = 0.07 - stroke * 0.52;
+          }
+        });
+
+        rL.intensity = 3.5 + Math.sin(t * 1.2) * 1.2;
+        renderer.render(scene, camera);
+      }
+      tick();
+    })();
+
+    /* ══════════════════════════════════════════
+       THREE.JS — MFG SECTION: Mould Cross-Section
+    ══════════════════════════════════════════ */
+    (function () {
+      const canvas = document.getElementById('dieCanvas');
+      if (!canvas) return;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+      camera.position.set(3, 5, 9);
+      camera.lookAt(0, 0, 0);
+
+      function resize() {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      scene.add(new THREE.AmbientLight(0xfff8f8, 1.1));
+      const d = new THREE.DirectionalLight(0xffffff, 2.8);
+      d.position.set(6, 10, 7); d.castShadow = true; scene.add(d);
+      const rL = new THREE.PointLight(0xC8102E, 3.5, 10); rL.position.set(-3, 5, 4); scene.add(rL);
+      const f = new THREE.PointLight(0xffe8e8, 2.0, 12); f.position.set(4, -3, 3); scene.add(f);
+
+      const sM = new THREE.MeshStandardMaterial({ color: 0xd0c4bc, metalness: 0.82, roughness: 0.12 });
+      const sD = new THREE.MeshStandardMaterial({ color: 0x8a8080, metalness: 0.88, roughness: 0.08 });
+      const rM = new THREE.MeshStandardMaterial({ color: 0xC8102E, metalness: 0.3, roughness: 0.4, emissive: 0xC8102E, emissiveIntensity: 0.12 });
+      const gM = new THREE.MeshStandardMaterial({ color: 0xa8c8e0, metalness: 0.6, roughness: 0.3, transparent: true, opacity: 0.5 });
+      const pM = new THREE.MeshStandardMaterial({ color: 0xf0e8e0, metalness: 0.1, roughness: 0.6 });
+
+      const g = new THREE.Group(); scene.add(g);
+
+      // CORE PLATE
+      const cp = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.65, 2.6), sM); cp.position.y = 0.9; cp.castShadow = true; g.add(cp);
+      // Core insert
+      const ci = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.5, 1.1), sD); ci.position.y = 0.52; g.add(ci);
+      // Core protrusion (product shape)
+      const cpro = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.35, 0.7), sD); cpro.position.set(0, 0.28, 0); g.add(cpro);
+      const cproRound = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.18, 0.2, 12), sD); cproRound.position.set(0, 0.15, 0); g.add(cproRound);
+
+      // Guide pillars
+      [[-1.3, -0.95], [1.3, -0.95], [-1.3, 0.95], [1.3, 0.95]].forEach(([x, z]) => {
+        const p = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.7, 14), sD); p.position.set(x, 0.5, z); g.add(p);
+      });
+
+      // Cooling channels (blue tubes)
+      [-0.65, 0.65].forEach(x => {
+        const c = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 3.5, 12), gM); c.rotation.z = Math.PI / 2; c.position.set(x, 0.9, 0); g.add(c);
+        const c2 = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 3.5, 12), gM); c2.rotation.z = Math.PI / 2; c2.position.set(x, -0.9, 0); g.add(c2);
+      });
+
+      // Parting line red flash
+      const pl = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.025, 2.8), rM); pl.position.y = 0; g.add(pl);
+
+      // CAVITY PLATE
+      const cavP = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.65, 2.6), sM); cavP.position.y = -0.9; cavP.castShadow = true; g.add(cavP);
+      // Cavity insert
+      const cavI = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.5, 1.1), sD); cavI.position.y = -0.52; g.add(cavI);
+      // Cavity pocket
+      const cavPock = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.32, 0.75), new THREE.MeshStandardMaterial({ color: 0x787070, metalness: 0.85, roughness: 0.08 }));
+      cavPock.position.set(0, -0.3, 0); g.add(cavPock);
+
+      // Ejector pins
+      [-0.45, 0, 0.45].forEach(x => {
+        const ep = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.0, 10), rM); ep.position.set(x, -0.9, 0); g.add(ep);
+      });
+
+      // Guide bushes
+      [[-1.3, -0.95], [1.3, -0.95], [-1.3, 0.95], [1.3, 0.95]].forEach(([x, z]) => {
+        const b = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.36, 16), rM); b.position.set(x, -0.5, z); g.add(b);
+      });
+
+      // Sprue bushing
+      const sp = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.06, 1.1, 12), rM); sp.position.set(0, 0.95, 0); g.add(sp);
+
+      // Moulded part (product)
+      const prod = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.3, 0.65), pM); prod.position.y = 0; g.add(prod);
+
+      // TOP CLAMP
+      const tc = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.2, 2.8), sD); tc.position.y = 1.3; tc.castShadow = true; g.add(tc);
+      // BASE
+      const base = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.2, 2.8), sD); base.position.y = -1.3; base.receiveShadow = true; g.add(base);
+      // EJECTOR RETAINER PLATE
+      const ejRet = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.14, 2.2), sD); ejRet.position.y = -1.15; g.add(ejRet);
+
+      g.rotation.x = 0.2; g.rotation.y = -0.3;
+
+      // Mouse
+      let isDown = false, lx = 0, ly = 0, ry = -0.3, rx = 0.2;
+      canvas.addEventListener('mousedown', e => { isDown = true; lx = e.clientX; ly = e.clientY });
+      canvas.addEventListener('touchstart', e => { isDown = true; lx = e.touches[0].clientX; ly = e.touches[0].clientY }, { passive: true });
+      window.addEventListener('mouseup', () => isDown = false);
+      window.addEventListener('touchend', () => isDown = false);
+      canvas.addEventListener('mousemove', e => { if (isDown) { ry += (e.clientX - lx) * 0.007; rx += (e.clientY - ly) * 0.005; rx = Math.max(-0.5, Math.min(0.5, rx)); lx = e.clientX; ly = e.clientY; } });
+      canvas.addEventListener('touchmove', e => { if (isDown) { ry += (e.touches[0].clientX - lx) * 0.007; rx += (e.touches[0].clientY - ly) * 0.005; lx = e.touches[0].clientX; ly = e.touches[0].clientY; } }, { passive: true });
+
+      let t = 0;
+      function tick() {
+        requestAnimationFrame(tick); t += 0.01;
+        g.rotation.y += (ry - g.rotation.y) * 0.06;
+        g.rotation.x += (rx - g.rotation.x) * 0.06;
+        if (!isDown) ry += 0.003;
+        rL.intensity = 3 + Math.sin(t * 1.3) * 1;
+        renderer.render(scene, camera);
+      }
+      tick();
+    })();
+
+    /* ══════════════════════════════════════════
+       NAV & UI
+    ══════════════════════════════════════════ */
+    const nav = document.getElementById('mainnav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
+
+    const ham = document.getElementById('ham'), drawer = document.getElementById('drawer');
+    ham.addEventListener('click', () => { const o = drawer.classList.toggle('open'); ham.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; });
+    function cd() { drawer.classList.remove('open'); ham.classList.remove('open'); document.body.style.overflow = ''; }
+    document.addEventListener('click', e => { if (!nav.contains(e.target) && !drawer.contains(e.target)) cd(); });
+
+    /* Reveal on scroll */
+    const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }); }, { threshold: 0.07 });
+    document.querySelectorAll('.rv,.rl,.rr').forEach(el => io.observe(el));
+
+    /* Counter animation */
+    function countUp(el) {
+      const target = parseInt(el.dataset.target); if (!target) return;
+      let c = 0; const step = Math.max(1, Math.ceil(target / 55));
+      const t = setInterval(() => { c = Math.min(c + step, target); el.textContent = target >= 100 ? c.toLocaleString() + '+' : c + '+'; if (c >= target) clearInterval(t); }, 18);
+    }
+    const cio = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } }); }, { threshold: .5 });
+    document.querySelectorAll('[data-target]').forEach(el => cio.observe(el));
+
+    /* Strip ticker */
+    const items = ['Injection Mould Dies', 'Press Tool Dies', 'Plastic Moulded Components', 'Jigs & Fixtures', 'Defence Grade Parts', 'Precision Job Works', 'Surface Grinding', 'EDM Sparking', 'Automotive OEM Parts', 'Bangalore · India'];
+    const strip = document.getElementById('strip');
+    const sh = items.map(t => `<span class="strip-item">${t}</span>`).join('');
+    strip.innerHTML = sh + sh;
+
+    /* Client marquee */
+    const logos = [{ n: 'Toyota', c: '#EB0A1E' }, { n: 'Amphenol', c: '#003087' }, { n: 'Honeywell', c: '#DC2626' }, { n: 'HAL', c: '#1E3A5F' }, { n: 'IISc', c: '#1E3A5F' }, { n: 'Physics Motors', c: '#1C1C1E' }, { n: 'Prognosys', c: '#059669' }, { n: 'Sea6 Energy', c: '#0891B2' }, { n: 'ICAR', c: '#166534' }, { n: 'Miracle Electronics', c: '#1E1B4B' }, { n: 'Ample Digital', c: '#0057B8' }, { n: 'WeWork', c: '#111' }];
+    const mq = document.getElementById('marquee');
+    mq.innerHTML = logos.map(l => `<div class="logo-slot"><svg viewBox="0 0 120 36" width="120" height="36"><rect width="120" height="36" rx="4" fill="${l.c}"/><text x="60" y="23" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="white" text-anchor="middle" letter-spacing=".5">${l.n}</text></svg></div>`).join('')
+      + logos.map(l => `<div class="logo-slot"><svg viewBox="0 0 120 36" width="120" height="36"><rect width="120" height="36" rx="4" fill="${l.c}"/><text x="60" y="23" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="white" text-anchor="middle" letter-spacing=".5">${l.n}</text></svg></div>`).join('');
+
+    /* Form submit */
+    function send() {
+      const g = id => document.getElementById(id).value.trim();
+      const fn = g('fn'), co = g('co'), em = g('em'), ph = g('ph'), pr = document.getElementById('pr').value, mat = g('mat'), qty = g('qty'), ms = g('ms');
+      if (!fn || !co || !em || !ph || !pr || !ms) { alert('Please fill all required fields.'); return; }
+      const sub = encodeURIComponent(`Engineering Enquiry – ${pr} | ${co}`);
+      const bod = encodeURIComponent(`ENGINEERING ENQUIRY – TOOLINGS OCEAN\n=====================================\nName       : ${fn}\nCompany    : ${co}\nEmail      : ${em}\nPhone      : ${ph}\nProduct    : ${pr}\nMaterial   : ${mat || 'N/A'}\nQuantity   : ${qty || 'N/A'}\n\nREQUIREMENTS:\n${ms}\n\n---\nSent via Toolings Ocean website`);
+      window.location.href = `mailto:chavantoolings@gmail.com?subject=${sub}&body=${bod}`;
+      document.getElementById('fok').style.display = 'block';
+      document.getElementById('ff').style.display = 'none';
+    }
+  </script>
 </body>
+
 </html>
