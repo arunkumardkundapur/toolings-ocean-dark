@@ -1351,6 +1351,174 @@
       transform: none
     }
 
+    /* ═══════════ FABRICATION ═══════════ */
+    #fabrication {
+      background: var(--white)
+    }
+
+    .fab-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+      margin-bottom: clamp(48px, 7vw, 80px);
+    }
+
+    .fab-visual {
+      aspect-ratio: 4/3;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff8f8 0%, #fff0f0 100%);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(200, 16, 46, .1);
+      position: relative;
+    }
+
+    #fabCanvas {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .fab-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 8px
+    }
+
+    .fab-points {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .fabp {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      background: var(--off);
+      border: 1px solid rgba(200, 16, 46, .07);
+      border-radius: 14px;
+      transition: all .25s
+    }
+
+    .fabp:hover {
+      background: var(--white);
+      border-color: rgba(200, 16, 46, .2);
+      box-shadow: 0 8px 28px rgba(200, 16, 46, .07);
+      transform: translateX(4px)
+    }
+
+    .fabp-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      background: var(--light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: background .25s
+    }
+
+    .fabp:hover .fabp-icon {
+      background: rgba(200, 16, 46, .12)
+    }
+
+    .fabp strong {
+      display: block;
+      font-size: clamp(13px, 1.5vw, 15px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px
+    }
+
+    .fabp span {
+      font-size: clamp(11px, 1.3vw, 13px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    .fab-services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+      gap: clamp(14px, 2vw, 20px);
+    }
+
+    .fabs {
+      background: var(--off);
+      border: 1px solid rgba(200, 16, 46, .07);
+      border-radius: 16px;
+      padding: clamp(20px, 2.5vw, 30px);
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fabs::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s
+    }
+
+    .fabs:hover {
+      background: var(--white);
+      box-shadow: 0 14px 48px rgba(200, 16, 46, .1);
+      transform: translateY(-3px);
+      border-color: rgba(200, 16, 46, .18)
+    }
+
+    .fabs:hover::before {
+      transform: scaleX(1)
+    }
+
+    .fabs-icon {
+      font-size: 26px;
+      margin-bottom: 14px
+    }
+
+    .fabs h3 {
+      font-size: clamp(14px, 1.6vw, 16px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px
+    }
+
+    .fabs p {
+      font-size: clamp(11px, 1.3vw, 13px);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7
+    }
+
+    .fabs-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red)
+    }
+
     /* ═══════════ RESPONSIVE ═══════════ */
     @media(max-width:960px) {
       #hero {
@@ -1383,6 +1551,10 @@
       }
 
       .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      .fab-hero {
         grid-template-columns: 1fr
       }
     }
@@ -1451,6 +1623,7 @@
     <ul class="nl">
       <li><a href="#process">Process</a></li>
       <li><a href="#capabilities">Products</a></li>
+      <li><a href="#fabrication">Fabrication</a></li>
       <li><a href="#clients">Clients</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact" class="nq">Get a Quote</a></li>
@@ -1460,6 +1633,7 @@
   <div class="ndraw" id="drawer">
     <a href="#process" onclick="cd()">Process</a>
     <a href="#capabilities" onclick="cd()">Products</a>
+    <a href="#fabrication" onclick="cd()">Fabrication</a>
     <a href="#clients" onclick="cd()">Clients</a>
     <a href="#about" onclick="cd()">About</a>
     <a href="#contact" onclick="cd()">📨 Get a Quote</a>
@@ -1520,10 +1694,10 @@
 
       <!-- 3D process canvas -->
       <!-- <div class="proc-3d-wrap rv">
-        <canvas id="procCanvas"></canvas>
-        <div class="proc-label">🏭 Live 3D — Press Tool Die Manufacturing</div>
-        <div class="proc-label2">Drag to Rotate</div>
-      </div> -->
+      <canvas id="procCanvas"></canvas>
+      <div class="proc-label">🏭 Live 3D — Press Tool Die Manufacturing</div>
+      <div class="proc-label2">Drag to Rotate</div>
+    </div> -->
 
       <!-- Step cards -->
       <div class="proc-steps">
@@ -1676,6 +1850,142 @@
                 Full hardened steel production tooling for 100,000+ shot production life.</span></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FABRICATION -->
+  <section id="fabrication">
+    <div class="ov rv">Sheet Metal &amp; Structural Work</div>
+    <h2 class="sh rv">Fabrication Services</h2>
+    <p class="sp rv">Beyond tooling and moulding, Toolings Ocean offers full-cycle metal fabrication services — from
+      cutting and forming to welding and surface finishing — for structural, industrial, and enclosure applications.</p>
+
+    <!-- Hero layout: 3D canvas + key points -->
+    <div class="fab-hero">
+      <div class="fab-visual rl">
+        <canvas id="fabCanvas"></canvas>
+        <!-- <div class="fab-tag">3D — Sheet Metal Fabrication</div> -->
+      </div>
+      <div class="rr">
+        <div class="fab-points">
+          <div class="fabp rv">
+            <div class="fabp-icon">✂️</div>
+            <div><strong>Precision Cutting &amp; Blanking</strong><span>Laser-grade profile cutting, shearing, and
+                blanking of mild steel, stainless steel, and aluminium sheets. Clean edges with tight dimensional
+                control.</span></div>
+          </div>
+          <div class="fabp rv">
+            <div class="fabp-icon">🔨</div>
+            <div><strong>Sheet Metal Forming &amp; Bending</strong><span>Press brake bending, roll forming, and deep
+                drawing of sheet metal components to complex 3D profiles. Springback compensation built into tooling
+                design.</span></div>
+          </div>
+          <div class="fabp rv">
+            <div class="fabp-icon">🔥</div>
+            <div><strong>MIG / TIG / Arc Welding</strong><span>Structural and precision welding in MS, SS, and
+                aluminium. Skilled certified welders with experience in thin-sheet assemblies and heavy
+                fabrications.</span></div>
+          </div>
+          <div class="fabp rv">
+            <div class="fabp-icon">🏗️</div>
+            <div><strong>Structural Fabrication</strong><span>Frames, brackets, enclosures, support structures, and
+                custom assemblies fabricated to drawing. Suitable for machine bases, panels, and industrial equipment
+                housings.</span></div>
+          </div>
+          <div class="fabp rv">
+            <div class="fabp-icon">✨</div>
+            <div><strong>Surface Finishing</strong><span>Grinding, deburring, polishing, and surface treatment of
+                fabricated components. Clean aesthetic finish for enclosures and visible assemblies.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service cards grid -->
+    <div class="fab-services">
+
+      <div class="fabs rv">
+        <div class="fabs-icon">🔩</div>
+        <h3>Custom Sheet Metal Components</h3>
+        <p>Brackets, clamps, clips, covers, and stampings in any gauge of mild steel, stainless steel, or aluminium.
+          Batch quantities from 1 to 10,000 pieces.</p>
+        <span class="fabs-tag">Sheet Metal</span>
+      </div>
+
+      <div class="fabs rv">
+        <div class="fabs-icon">🗄️</div>
+        <h3>Enclosures &amp; Panels</h3>
+        <p>Electrical and electronic enclosures, control panels, junction boxes, and machine guards fabricated in MS/SS
+          with punch-outs, hinges, and mounting provisions.</p>
+        <span class="fabs-tag">Enclosures</span>
+      </div>
+
+      <div class="fabs rv">
+        <div class="fabs-icon">🏛️</div>
+        <h3>Structural Frames &amp; Bases</h3>
+        <p>Machine bases, equipment frames, trolleys, and support structures fabricated in MS sections, channels, and
+          hollow sections. Welded and finished to drawing.</p>
+        <span class="fabs-tag">Structural</span>
+      </div>
+
+      <div class="fabs rv">
+        <div class="fabs-icon">🔗</div>
+        <h3>Assembly &amp; Sub-Assembly</h3>
+        <p>Complete fabricated sub-assemblies with hardware insertion, fastener installation, and inspection.
+          Ready-to-mount assemblies delivered directly to your production line.</p>
+        <span class="fabs-tag">Assembly</span>
+      </div>
+
+      <div class="fabs rv">
+        <div class="fabs-icon">⚙️</div>
+        <h3>Machined + Fabricated Hybrids</h3>
+        <p>Complex assemblies combining CNC-machined and fabricated components — welded housings with precision-bored
+          features, brackets with threaded inserts, and more.</p>
+        <span class="fabs-tag">Hybrid Parts</span>
+      </div>
+
+      <div class="fabs rv">
+        <div class="fabs-icon">📋</div>
+        <h3>Prototype &amp; Short Run Fabrication</h3>
+        <p>Fast-turn prototype fabrication for design validation. Single-piece and short-run production with no minimum
+          order quantity. Drawing to component in days.</p>
+        <span class="fabs-tag">Prototypes</span>
+      </div>
+
+    </div>
+
+    <!-- Materials & standards banner -->
+    <div
+      style="margin-top:clamp(32px,4vw,52px);background:var(--light);border:1px solid var(--border);border-radius:16px;padding:clamp(22px,3.5vw,40px);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:clamp(20px,3vw,36px)"
+      class="rv">
+      <div>
+        <div
+          style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px">
+          Materials Handled</div>
+        <div style="font-size:clamp(13px,1.4vw,14px);font-weight:300;color:var(--muted);line-height:1.75">Mild Steel
+          (MS) · Stainless Steel (SS 304/316) · Aluminium · GI Sheet · HR/CR Coils · Structural Sections</div>
+      </div>
+      <div>
+        <div
+          style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px">
+          Processes</div>
+        <div style="font-size:clamp(13px,1.4vw,14px);font-weight:300;color:var(--muted);line-height:1.75">Shearing ·
+          Bending · Punching · Welding (MIG/TIG/ARC) · Grinding · Drilling · Tapping · Assembly</div>
+      </div>
+      <div>
+        <div
+          style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px">
+          Thickness Range</div>
+        <div style="font-size:clamp(13px,1.4vw,14px);font-weight:300;color:var(--muted);line-height:1.75">Sheet Metal:
+          0.5mm – 12mm · Plate: up to 25mm · Structural sections: standard and custom profiles</div>
+      </div>
+      <div>
+        <div
+          style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px">
+          Applications</div>
+        <div style="font-size:clamp(13px,1.4vw,14px);font-weight:300;color:var(--muted);line-height:1.75">Industrial
+          Machinery · Electrical Enclosures · Automotive · Defence · Construction · Research Equipment</div>
       </div>
     </div>
   </section>
@@ -2022,6 +2332,7 @@
       <ul class="fnav">
         <li><a href="#process">Process</a></li>
         <li><a href="#capabilities">Products</a></li>
+        <li><a href="#fabrication">Fabrication</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -2546,7 +2857,167 @@
     mq.innerHTML = logos.map(l => `<div class="logo-slot"><svg viewBox="0 0 120 36" width="120" height="36"><rect width="120" height="36" rx="4" fill="${l.c}"/><text x="60" y="23" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="white" text-anchor="middle" letter-spacing=".5">${l.n}</text></svg></div>`).join('')
       + logos.map(l => `<div class="logo-slot"><svg viewBox="0 0 120 36" width="120" height="36"><rect width="120" height="36" rx="4" fill="${l.c}"/><text x="60" y="23" font-family="Outfit,sans-serif" font-size="11" font-weight="700" fill="white" text-anchor="middle" letter-spacing=".5">${l.n}</text></svg></div>`).join('');
 
-    /* Form submit */
+    /* ══════════════════════════════════════════
+       THREE.JS — FABRICATION: Sheet Metal Scene
+    ══════════════════════════════════════════ */
+    (function () {
+      const canvas = document.getElementById('fabCanvas');
+      if (!canvas) return;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, 4 / 3, 0.1, 100);
+      camera.position.set(0, 5, 10);
+      camera.lookAt(0, 0, 0);
+
+      function resize() {
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h; camera.updateProjectionMatrix();
+      }
+      resize(); window.addEventListener('resize', resize);
+
+      scene.add(new THREE.AmbientLight(0xfff8f8, 1.1));
+      const dir = new THREE.DirectionalLight(0xffffff, 2.8); dir.position.set(6, 10, 8); dir.castShadow = true; scene.add(dir);
+      const rL = new THREE.PointLight(0xC8102E, 3.5, 12); rL.position.set(-4, 5, 3); scene.add(rL);
+      const fL = new THREE.PointLight(0xffe8e0, 2.0, 10); fL.position.set(5, -2, 4); scene.add(fL);
+
+      // Materials
+      const steelM = new THREE.MeshStandardMaterial({ color: 0xd0c8c0, metalness: 0.85, roughness: 0.12 });
+      const ssM = new THREE.MeshStandardMaterial({ color: 0xe0dcd8, metalness: 0.9, roughness: 0.08 });
+      const redM = new THREE.MeshStandardMaterial({ color: 0xC8102E, metalness: 0.3, roughness: 0.38, emissive: 0xC8102E, emissiveIntensity: 0.15 });
+      const sheetM = new THREE.MeshStandardMaterial({ color: 0xb8c0c8, metalness: 0.88, roughness: 0.1, side: THREE.DoubleSide });
+      const weldM = new THREE.MeshStandardMaterial({ color: 0xf0b840, metalness: 0.4, roughness: 0.3, emissive: 0xf08020, emissiveIntensity: 0.3 });
+
+      const world = new THREE.Group(); scene.add(world);
+
+      /* ── WORK TABLE ── */
+      const table = new THREE.Mesh(new THREE.BoxGeometry(8, 0.18, 5), new THREE.MeshStandardMaterial({ color: 0xa09080, metalness: 0.3, roughness: 0.7 }));
+      table.position.y = -1.5; table.receiveShadow = true; scene.add(table);
+
+      /* ── MAIN SHEET METAL PANEL (being fabricated) ── */
+      const panelGroup = new THREE.Group();
+      // Base sheet
+      const sheet = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.06, 2.2), sheetM); sheet.castShadow = true; panelGroup.add(sheet);
+      // Flanged edges (bent up)
+      const flL = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.5, 2.2), sheetM); flL.position.set(-1.77, 0.22, 0); panelGroup.add(flL);
+      const flR = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.5, 2.2), sheetM); flR.position.set(1.77, 0.22, 0); panelGroup.add(flR);
+      // Punched holes in sheet
+      for (let i = -1; i <= 1; i++) {
+        const h = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.1, 16), redM); h.rotation.x = Math.PI / 2; h.position.set(i * 1.1, 0, 0); panelGroup.add(h);
+      }
+      // Mounting holes corners
+      [[-1.6, -0.9], [1.6, -0.9], [-1.6, 0.9], [1.6, 0.9]].forEach(([x, z]) => {
+        const mh = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.1, 12), redM); mh.rotation.x = Math.PI / 2; mh.position.set(x, 0, z); panelGroup.add(mh);
+      });
+      panelGroup.position.set(0, 0, 0);
+      world.add(panelGroup);
+
+      /* ── STRUCTURAL FRAME (welded) ── */
+      const frameGroup = new THREE.Group();
+      frameGroup.position.set(3.2, 0, -0.5);
+      // Horizontal members
+      [[0, 0, 0], [0, 1.2, 0]].forEach(([x, y, z]) => {
+        const hm = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.09, 0.09), steelM); hm.position.set(x, y, z); frameGroup.add(hm);
+        const hm2 = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.09, 0.09), steelM); hm2.position.set(x, y, 0.9); frameGroup.add(hm2);
+      });
+      // Vertical posts
+      [[-0.85, 0], [-0.85, 0.9], [0.85, 0], [0.85, 0.9]].forEach(([x, z]) => {
+        const vp = new THREE.Mesh(new THREE.BoxGeometry(0.09, 1.2, 0.09), steelM); vp.position.set(x, 0.6, z); frameGroup.add(vp);
+      });
+      // Weld beads (glowing)
+      [[-0.85, 0, -0.85], [-0.85, 0, 0.85], [0.85, 0, -0.85], [0.85, 0, 0.85]].forEach(([x, y, z]) => {
+        const wb = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 6), weldM); wb.position.set(x + 0.85, y + 0.04, z + 0.45); frameGroup.add(wb);
+      });
+      world.add(frameGroup);
+
+      /* ── ENCLOSURE BOX (fabricated) ── */
+      const boxGroup = new THREE.Group();
+      boxGroup.position.set(-3.2, 0, -0.5);
+      // Box walls
+      const bBase = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.06, 1.3), ssM); bBase.position.y = 0; boxGroup.add(bBase);
+      const bFront = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.9, 0.06), ssM); bFront.position.set(0, 0.48, -0.62); boxGroup.add(bFront);
+      const bBack = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.9, 0.06), ssM); bBack.position.set(0, 0.48, 0.62); boxGroup.add(bBack);
+      const bLeft = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.9, 1.3), ssM); bLeft.position.set(-0.87, 0.48, 0); boxGroup.add(bLeft);
+      const bRight = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.9, 1.3), ssM); bRight.position.set(0.87, 0.48, 0); boxGroup.add(bRight);
+      // Cable knockouts on front
+      [-0.5, 0, 0.5].forEach(x => {
+        const ko = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.08, 12), redM); ko.rotation.x = Math.PI / 2; ko.position.set(x, 0.48, -0.62); boxGroup.add(ko);
+      });
+      // Hinge (red)
+      const hinge1 = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.15, 0.1), redM); hinge1.position.set(-0.87, 0.65, 0.3); boxGroup.add(hinge1);
+      const hinge2 = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.15, 0.1), redM); hinge2.position.set(-0.87, 0.35, 0.3); boxGroup.add(hinge2);
+      world.add(boxGroup);
+
+      /* ── WELDING SPARKS particle system ── */
+      const sparkGeo = new THREE.BufferGeometry();
+      const sparkCount = 60;
+      const sparkPos = new Float32Array(sparkCount * 3);
+      const sparkVel = [];
+      for (let i = 0; i < sparkCount; i++) {
+        sparkPos[i * 3] = 0; sparkPos[i * 3 + 1] = 0; sparkPos[i * 3 + 2] = 0;
+        sparkVel.push({ x: (Math.random() - .5) * 3, y: Math.random() * 4 + 1, z: (Math.random() - .5) * 3, life: 0, maxLife: 0.5 + Math.random() * 0.5 });
+      }
+      sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
+      const sparkMat = new THREE.PointsMaterial({ color: 0xff8800, size: 0.08, transparent: true, opacity: 0.9 });
+      const sparks = new THREE.Points(sparkGeo, sparkMat);
+      sparks.position.set(3.2, 1.2, -0.5);
+      scene.add(sparks);
+
+      // Welding arc glow
+      const arcLight = new THREE.PointLight(0xff9900, 0, 4); arcLight.position.set(3.2, 1.3, -0.5); scene.add(arcLight);
+
+      // Mouse rotate
+      let isDn = false, lx = 0, ry = 0;
+      canvas.addEventListener('mousedown', e => { isDn = true; lx = e.clientX });
+      canvas.addEventListener('touchstart', e => { isDn = true; lx = e.touches[0].clientX }, { passive: true });
+      window.addEventListener('mouseup', () => isDn = false);
+      window.addEventListener('touchend', () => isDn = false);
+      canvas.addEventListener('mousemove', e => { if (isDn) { ry += (e.clientX - lx) * 0.008; lx = e.clientX; } });
+      canvas.addEventListener('touchmove', e => { if (isDn) { ry += (e.touches[0].clientX - lx) * 0.008; lx = e.touches[0].clientX; } }, { passive: true });
+
+      let t = 0;
+      function tick() {
+        requestAnimationFrame(tick); t += 0.014;
+
+        world.rotation.y += (ry - world.rotation.y) * 0.06;
+        if (!isDn) ry += 0.004;
+
+        // Animate sparks
+        const pos = sparkGeo.attributes.position.array;
+        for (let i = 0; i < sparkCount; i++) {
+          const v = sparkVel[i];
+          v.life += 0.016;
+          if (v.life > v.maxLife) {
+            v.life = 0; v.x = (Math.random() - .5) * 3; v.y = Math.random() * 4 + 1; v.z = (Math.random() - .5) * 3;
+            pos[i * 3] = 0; pos[i * 3 + 1] = 0; pos[i * 3 + 2] = 0;
+          } else {
+            const p = v.life / v.maxLife;
+            pos[i * 3] += v.x * 0.016 * (1 - p);
+            pos[i * 3 + 1] += v.y * 0.016 - 0.04;
+            pos[i * 3 + 2] += v.z * 0.016 * (1 - p);
+          }
+        }
+        sparkGeo.attributes.position.needsUpdate = true;
+        sparkMat.opacity = 0.7 + Math.sin(t * 8) * 0.3;
+
+        // Welding arc pulse
+        arcLight.intensity = 3 + Math.sin(t * 12) * 2.5;
+        weldM.emissiveIntensity = 0.2 + Math.sin(t * 7) * 0.15;
+
+        // Sheet slowly rotating
+        panelGroup.rotation.y = Math.sin(t * 0.3) * 0.15;
+
+        rL.intensity = 3 + Math.sin(t * 1.5) * 1;
+        renderer.render(scene, camera);
+      }
+      tick();
+    })();
+
+
     function send() {
       const g = id => document.getElementById(id).value.trim();
       const fn = g('fn'), co = g('co'), em = g('em'), ph = g('ph'), pr = document.getElementById('pr').value, mat = g('mat'), qty = g('qty'), ms = g('ms');
