@@ -52,6 +52,10 @@
       color: inherit
     }
 
+    .logo {
+      height: 4rem;
+    }
+
     /* ═══════════ NAV ═══════════ */
     nav {
       position: fixed;
@@ -64,7 +68,7 @@
       justify-content: space-between;
       padding: 0 var(--px);
       height: 68px;
-      background: rgba(255, 255, 255, 0.94);
+      background: rgb(242 243 245);
       border-bottom: 1px solid rgba(200, 16, 46, 0.10);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -470,6 +474,109 @@
 
       50% {
         transform: translateX(-50%) translateY(-6px)
+      }
+    }
+
+    /* for images  */
+
+    /* ===== IMAGE SCROLLER ===== */
+
+    .gallery-wrap {
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .gallery-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+    }
+
+    .gallery-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-scroll::-webkit-scrollbar-thumb {
+      background: rgba(200, 16, 46, .3);
+      border-radius: 20px;
+    }
+
+    .gallery-item {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 150px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      background: #f5f5f5;
+      border: 1px solid rgba(200, 16, 46, .1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* arrows */
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+      cursor: pointer;
+      z-index: 5;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .gallery-btn:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .gallery-prev {
+      left: -10px;
+    }
+
+    .gallery-next {
+      right: -10px;
+    }
+
+    /* mobile responsive */
+
+    @media(max-width:768px) {
+
+      .gallery-item {
+        width: 220px;
+        height: 160px;
+      }
+
+      .gallery-btn {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    @media(max-width:480px) {
+
+      .gallery-item {
+        width: 180px;
+        height: 140px;
       }
     }
 
@@ -1617,7 +1724,7 @@
   <!-- NAV -->
   <nav id="mainnav">
     <a href="#hero" class="nb">
-      <div class="nlogo">TO</div>
+      <img class="logo" src="./asset/logo.jpeg" alt="">
       <div class="nw">Toolings <em>Ocean</em></div>
     </a>
     <ul class="nl">
@@ -1707,6 +1814,121 @@
           <div class="pstep-t">CAD/CAM Design</div>
           <div class="pstep-d">3D mould design with parting surface analysis, gate and runner layout, cooling channel
             routing, and DFM review before machining release.</div>
+          <div class="gallery-wrap">
+
+            <button class="gallery-btn gallery-prev" onclick="scrollGallery('cadGallery', -210)">
+              ‹
+            </button>
+
+            <div class="gallery-scroll" id="cadGallery">
+
+              <div class="gallery-item">
+                <img src="./asset/cad/1.jpeg" alt="CAD Image 1">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/2.jpeg" alt="CAD Image 2">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/3.jpeg" alt="CAD Image 3">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/4.jpeg" alt="CAD Image 4">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/5.jpeg" alt="CAD Image 5">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/6.jpeg" alt="CAD Image 6">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/7.jpeg" alt="CAD Image 7">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/8.jpeg" alt="CAD Image 8">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/9.jpeg" alt="CAD Image 9">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/10.jpeg" alt="CAD Image 10">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/11.jpeg" alt="CAD Image 11">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/12.jpeg" alt="CAD Image 12">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/13.jpeg" alt="CAD Image 13">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/14.jpeg" alt="CAD Image 14">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/15.jpeg" alt="CAD Image 15">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/16.jpeg" alt="CAD Image 16">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/17.jpeg" alt="CAD Image 17">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/18.jpeg" alt="CAD Image 18">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/19.jpeg" alt="CAD Image 19">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/20.jpeg" alt="CAD Image 20">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/21.jpeg" alt="CAD Image 21">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/22.jpeg" alt="CAD Image 22">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/23.jpeg" alt="CAD Image 23">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/24.jpeg" alt="CAD Image 24">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cad/25.jpeg" alt="CAD Image 25">
+              </div>
+
+            </div>
+
+            <button class="gallery-btn gallery-next" onclick="scrollGallery('cadGallery', 210)">
+              ›
+            </button>
+
+          </div>
         </div>
         <div class="pstep rv">
           <div class="pstep-n">02 — MACHINING</div>
@@ -1714,6 +1936,101 @@
           <div class="pstep-t">CNC &amp; Grinding</div>
           <div class="pstep-d">CNC milling of core-cavity blocks, precision drilling, and surface grinding to achieve
             flatness within microns for perfect mould shut-off.</div>
+          <div class="gallery-wrap">
+
+            <button class="gallery-btn gallery-prev" onclick="scrollGallery('cncGallery', -210)">
+              ‹
+            </button>
+
+            <div class="gallery-scroll" id="cncGallery">
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-1.jpeg" alt="CNC Image 1">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-2.jpeg" alt="CNC Image 2">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-3.jpeg" alt="CNC Image 3">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-4.jpeg" alt="CNC Image 4">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-5.jpeg" alt="CNC Image 5">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-6.jpeg" alt="CNC Image 6">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-7.jpeg" alt="CNC Image 7">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-8.jpeg" alt="CNC Image 8">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-9.jpeg" alt="CNC Image 9">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-10.jpeg" alt="CNC Image 10">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-11.jpeg" alt="CNC Image 11">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-12.jpeg" alt="CNC Image 12">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-13.jpeg" alt="CNC Image 13">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-14.jpeg" alt="CNC Image 14">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-15.jpeg" alt="CNC Image 15">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-16.jpeg" alt="CNC Image 16">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-17.jpeg" alt="CNC Image 17">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-18.jpeg" alt="CNC Image 18">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-19.jpeg" alt="CNC Image 19">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/cnc/cnc-20.jpeg" alt="CNC Image 20">
+              </div>
+
+            </div>
+
+            <button class="gallery-btn gallery-next" onclick="scrollGallery('cncGallery', 210)">
+              ›
+            </button>
+
+          </div>
         </div>
         <div class="pstep rv">
           <div class="pstep-n">03 — EDM</div>
@@ -1721,6 +2038,42 @@
           <div class="pstep-t">EDM Sparking</div>
           <div class="pstep-d">Electrical discharge machining for sharp internal ribs, fine textures, and complex cavity
             forms impossible to achieve by cutting tools alone.</div>
+          <div class="gallery-wrap">
+
+            <button class="gallery-btn gallery-prev" onclick="scrollGallery('edmGallery', -210)">
+              ‹
+            </button>
+
+            <div class="gallery-scroll" id="edmGallery">
+
+              <div class="gallery-item">
+                <img src="./asset/edm/edm-1.jpeg" alt="CNC Image 1">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/edm/edm-2.jpeg" alt="CNC Image 2">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/edm/edm-3.jpeg" alt="CNC Image 3">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/edm/edm-4.jpeg" alt="CNC Image 4">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/edm/edm-5.jpeg" alt="CNC Image 5">
+              </div>
+
+            </div>
+
+
+            <button class="gallery-btn gallery-next" onclick="scrollGallery('edmGallery', 210)">
+              ›
+            </button>
+
+          </div>
         </div>
         <div class="pstep rv">
           <div class="pstep-n">04 — FITTING</div>
@@ -1728,6 +2081,48 @@
           <div class="pstep-t">Assembly &amp; Lapping</div>
           <div class="pstep-d">Core-cavity assembly with ejector system, cooling connections, and guide pillars. Hand
             lapping of parting surfaces for zero flash.</div>
+          <div class="gallery-wrap">
+
+            <button class="gallery-btn gallery-prev" onclick="scrollGallery('fittingGallery', -210)">
+              ‹
+            </button>
+
+            <div class="gallery-scroll" id="fittingGallery">
+
+
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-2.jpeg" alt="CNC Image 2">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-3.jpeg" alt="CNC Image 3">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-4.jpeg" alt="CNC Image 4">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-5.jpeg" alt="CNC Image 5">
+              </div>
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-6.avif" alt="CNC Image 5">
+              </div>
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-7.jpg" alt="CNC Image 5">
+              </div>
+              <div class="gallery-item">
+                <img src="./asset/fitting/as-8.avif" alt="CNC Image 5">
+              </div>
+
+            </div>
+
+
+            <button class="gallery-btn gallery-next" onclick="scrollGallery('fittingGallery', 210)">
+              ›
+            </button>
+
+          </div>
         </div>
         <div class="pstep rv">
           <div class="pstep-n">05 — TRIAL</div>
@@ -1735,6 +2130,42 @@
           <div class="pstep-t">Mould Trial</div>
           <div class="pstep-d">First article injection trial on our in-house machines. Dimensional inspection of moulded
             samples. Corrections until approved parts are achieved.</div>
+          <div class="gallery-wrap">
+
+            <button class="gallery-btn gallery-prev" onclick="scrollGallery('trGallery', -210)">
+              ‹
+            </button>
+
+            <div class="gallery-scroll" id="trGallery">
+
+              <div class="gallery-item">
+                <img src="./asset/trial/tr-1.jpeg" alt="CNC Image 1">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/trial/tr-2.jpeg" alt="CNC Image 2">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/trial/tr-3.jpeg" alt="CNC Image 3">
+              </div>
+              <div class="gallery-item">
+                <img src="./asset/trial/tr-4.jpeg" alt="CNC Image 3">
+              </div>
+              <div class="gallery-item">
+                <img src="./asset/trial/tr-5.jpeg" alt="CNC Image 3">
+              </div>
+
+
+
+            </div>
+
+
+            <button class="gallery-btn gallery-next" onclick="scrollGallery('trGallery', 210)">
+              ›
+            </button>
+
+          </div>
         </div>
         <div class="pstep rv">
           <div class="pstep-n">06 — DELIVERY</div>
@@ -1742,6 +2173,39 @@
           <div class="pstep-t">QC &amp; Dispatch</div>
           <div class="pstep-d">Full dimensional report, surface finish check, and protective packaging. Approved samples
             and inspection records dispatched with the tool.</div>
+          <div class="gallery-wrap">
+
+            <button class="gallery-btn gallery-prev" onclick="scrollGallery('qaGallery', -210)">
+              ‹
+            </button>
+
+            <div class="gallery-scroll" id="qaGallery">
+
+              <div class="gallery-item">
+                <img src="./asset/qa/qa-3.jpeg" alt="CNC Image 1">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/qa/qa-2.jpeg" alt="CNC Image 2">
+              </div>
+
+              <div class="gallery-item">
+                <img src="./asset/qa/qa-1.jpeg" alt="CNC Image 3">
+              </div>
+              <div class="gallery-item">
+                <img src="./asset/qa/qa-4.jpeg" alt="CNC Image 3">
+              </div>
+
+
+
+            </div>
+
+
+            <button class="gallery-btn gallery-next" onclick="scrollGallery('qaGallery', 210)">
+              ›
+            </button>
+
+          </div>
         </div>
       </div>
     </div>
@@ -1806,6 +2270,106 @@
         <p class="cap-p">Contract surface grinding, CNC turning, milling, drilling, and tapping. We accept job work for
           single pieces, prototypes, and small to large batch quantities.</p><span class="cap-tag">Job Work</span>
       </div>
+    </div>
+    <div class="gallery-wrap">
+
+      <button class="gallery-btn gallery-prev" onclick="scrollGallery('makeGallery', -210)">
+        ‹
+      </button>
+
+      <div class="gallery-scroll" id="makeGallery">
+        <div class="gallery-item">
+          <img src="./asset/make/mk-20.jpeg" alt="Make Image 20">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-21.jpeg" alt="Make Image 21">
+        </div>
+        <div class="gallery-item">
+          <img src="./asset/make/mk-22.jpeg" alt="Make Image 21">
+        </div>
+        <div class="gallery-item">
+          <img src="./asset/make/mk-1.jpeg" alt="Make Image 1">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-2.jpeg" alt="Make Image 2">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-3.jpeg" alt="Make Image 3">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-4.jpeg" alt="Make Image 4">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-5.jpeg" alt="Make Image 5">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-6.jpeg" alt="Make Image 6">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-7.jpeg" alt="Make Image 7">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-8.jpeg" alt="Make Image 8">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-9.jpeg" alt="Make Image 9">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-10.jpeg" alt="Make Image 10">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-11.jpeg" alt="Make Image 11">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-12.jpeg" alt="Make Image 12">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-13.jpeg" alt="Make Image 13">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-14.jpeg" alt="Make Image 14">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-15.jpeg" alt="Make Image 15">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-16.jpeg" alt="Make Image 16">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-17.jpeg" alt="Make Image 17">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-18.jpeg" alt="Make Image 18">
+        </div>
+
+        <div class="gallery-item">
+          <img src="./asset/make/mk-19.jpeg" alt="Make Image 19">
+        </div>
+
+      </div>
+
+      <button class="gallery-btn gallery-next" onclick="scrollGallery('makeGallery', 210)">
+        ›
+      </button>
+
     </div>
   </section>
 
@@ -1998,9 +2562,9 @@
       aerospace, energy, and electronics sectors across India.</p>
 
     <!-- Marquee -->
-    <div class="marquee-wrap rv">
+    <!-- <div class="marquee-wrap rv">
       <div class="marquee" id="marquee"></div>
-    </div>
+    </div> -->
 
     <!-- Client grid with custom SVG logos -->
     <div class="client-grid">
@@ -2235,8 +2799,7 @@
           <div class="irow"><span class="ik">SSI Reg.</span><span class="iv">290201118412 / 17.6.13</span></div>
           <div class="irow"><span class="ik">Location</span><span class="iv">No.19, 15th Cross, B Street,
               Srighandhnagar, Hegganahalli, Bangalore – 560 091</span></div>
-          <div class="irow"><span class="ik">Phone</span><span class="iv">Radhesh: +91 9986147974<br>Vinay: +91
-              6363765334</span></div>
+          <div class="irow"><span class="ik">Phone</span><span class="iv">Vinay: +916363765334</span></div>
           <div class="irow"><span class="ik">Email</span><span class="iv">chavantoolings@gmail.com</span></div>
         </div>
       </div>
@@ -2260,8 +2823,7 @@
         </div>
         <div class="cdet">
           <div class="cicon">📞</div>
-          <div class="cdtext"><strong>Phone</strong><span>Radhesh Chavan: +91 9986147974<br>Vinay Chavan: +91
-              6363765334</span></div>
+          <div class="cdtext"><strong>Phone</strong><span>Vinay Chavan: +916363765334</span></div>
         </div>
         <div class="cdet">
           <div class="cicon">✉️</div>
@@ -2549,6 +3111,18 @@
       }
       tick();
     })();
+
+    // for images 
+
+    function scrollGallery(id, amount) {
+      const gallery = document.getElementById(id);
+
+      gallery.scrollBy({
+        left: amount,
+        behavior: 'smooth'
+      });
+    }
+
 
     /* ══════════════════════════════════════════
        THREE.JS — PROCESS SECTION: Press Tool
